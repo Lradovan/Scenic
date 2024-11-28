@@ -42,7 +42,6 @@ class IsaacSimObject:
         from omni.isaac.core.utils import prims
         from omni.isaac.core.prims import RigidPrim
         from omni.isaac.core.materials import PreviewSurface
-        from omni.isaac.core.utils.stage import add_reference_to_stage
         from omni.physx.scripts import utils
 
         prim_path = f"/World/{self.name}"
@@ -112,6 +111,7 @@ class Create3(IsaacSimRobot, _WheeledRobot):
         from omni.isaac.core.robots import Robot
         from omni.isaac.wheeled_robots.controllers.differential_controller import DifferentialController
         from omni.isaac.wheeled_robots.robots import WheeledRobot
+        from omni.isaac.core.materials import PreviewSurface
 
         self.controller = DifferentialController(name="simple_control", wheel_radius=0.03, wheel_base=0.1125)
         
@@ -125,6 +125,12 @@ class Create3(IsaacSimRobot, _WheeledRobot):
             orientation=scenicToIsaacSimOrientation(self.orientation),
             usd_path=usd_path,
             wheel_dof_names=["left_wheel_joint", "right_wheel_joint"])
+
+        material = PreviewSurface(
+           prim_path=f"/World/material/{self.name}",  
+           color=np.array(self.color) if self.color else None)
+
+        prim.apply_visual_material(material)
 
         return prim
 
