@@ -3,6 +3,7 @@ from isaacsim import SimulationApp
 from scenic.core.vectors import Vector
 from scenic.core.simulators import SimulationCreationError
 import scenic.simulators.isaacsim.utils.utils as utils
+from scenic.core.regions import MeshVolumeRegion
 import math
 import asyncio
 import tempfile
@@ -28,16 +29,6 @@ class IsaacSimSimulation(Simulation):
     def __init__(self, scene, client, *, timestep, **kwargs):
 
         from omni.isaac.core import World
-        #import omni.isaac.core.utils.numpy.rotations as rot_utils
-        #from omni.isaac.sensor import Camera
-        # self.camera = Camera(
-        #     prim_path="/World/camera",
-        #     position=np.array([0.0, 0.0, 25.0]),
-        #     frequency=20,
-        #     resolution=(256, 256),
-        #     orientation=rot_utils.euler_angles_to_quats(np.array([0, 90, 0]), degrees=True),
-        # )
-
         from omni.isaac.core.utils.extensions import enable_extension
         enable_extension("omni.kit.asset_converter")
 
@@ -53,30 +44,38 @@ class IsaacSimSimulation(Simulation):
         action_registry = omni.kit.actions.core.get_action_registry()
         action = action_registry.get_action("omni.kit.viewport.menubar.lighting", "set_lighting_mode_camera")
         action.execute()
-        #self.camera.initialize()
         self.world.play()
 
     def step(self):
         self.world.step()
 
     def createObjectInSimulator(self, obj):
-
-        #static objects
+        
+        isaac_sim_obj = None
+        #ground plane or robot
         if obj.get_type() != 'IsaacSimObject':
-            isaacSimObj = obj.create()
-        else:
-            objFilePath = path.join(self.tmpMeshDir, f"{obj.name}.obj")
-            usdFilePath = path.join(self.tmpMeshDir, f"{obj.name}.usd")
-            trimesh.exchange.export.export_mesh(obj.shape.mesh, objFilePath)
-            asyncio.get_event_loop().run_until_complete(utils.convert(objFilePath, usdFilePath, True))
-            isaacSimObj = obj.create(usd_path=usdFilePath)
+            isaac_sim_obj = obj.create()
+        else: 
+            objectScaledMesh = MeshVolumeRegion(
+                mesh=obj.shape.mesh,
+                dimensions=(obj.width, obj.length, obj.height),
+            ).mesh
+            obj_file_path = path.join(self.tmpMeshDir, f"{obj.name}.obj")
+            usd_file_path = path.join(self.tmpMeshDir, f"{obj.name}.usd")
+            trimesh.exchange.export.export_mesh(objectScaledMesh, obj_file_path)
+            asyncio.get_event_loop().run_until_complete(utils.convert(obj_file_path, usd_file_path, True))
+
+            isaac_sim_obj = obj.create(usd_path=usd_file_path)
+
         if not obj.gravity:
-            isaacSimObj.prim.GetAttribute("physxRigidBody:disableGravity").Set(True)
+            isaac_sim_obj.prim.GetAttribute("physxRigidBody:disableGravity").Set(True)
 
         try:
-            self.world.scene.add(isaacSimObj)
+            self.world.scene.add(isaac_sim_obj)
         except:
             raise SimulationCreationError(f"Unable to add {obj.name} to world")
+        
+        # if it is a robot we need to reset the world
         if obj.get_type() == 'Robot':
             self.world.reset()
 
@@ -107,5 +106,5 @@ class IsaacSimSimulation(Simulation):
         )
         return values
     
-    #def destroy(self):
-    #    self.client.close()
+    def destroy(self):
+       self.client.close()

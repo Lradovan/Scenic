@@ -1,7 +1,7 @@
 model scenic.simulators.isaacsim.model
 from scenic.simulators.isaacsim.behaviors import *
 
-param numToys = 3
+param numToys = 5
 param duration = 5
 
 class DiningChair(IsaacSimObject):
@@ -10,7 +10,7 @@ class DiningChair(IsaacSimObject):
     width: 0.4
     length: .4
     height: 1
-    color: [0.403, 0.278, 0.212]
+    color: [0.54, 0.27, 0.074]
 
 class DiningTable(IsaacSimObject):
     shape: MeshShape.fromFile(localPath("../../../assets/meshes/dining_table.obj.bz2"))
@@ -18,14 +18,14 @@ class DiningTable(IsaacSimObject):
     width: Range(0.7, 1.5)
     length: Range(0.7, 1.5)
     height: 0.75
-    color: [0.403, 0.278, 0.212]
+    color: [0.54, 0.27, 0.074]
 
 class CoffeeTable(IsaacSimObject):
     shape: MeshShape.fromFile(localPath("../../../assets/meshes/coffee_table.obj.bz2"))
     width: 1.5
     length: 0.5
     height: 0.4
-    color: [0.404, 0.278, 0.212]
+    color: [0.54, 0.27, 0.074]
 
 class Wall(IsaacSimObject):
     width: 5
@@ -55,7 +55,7 @@ workspace = Workspace(room_region)
 
 floor = new GroundPlane with color (1, 1, 1), with width 5, with length 5
 
-ego = new Create3 on floor, with color (0, 1, 0), with behavior AvoidObstacles
+ego = new Create3 on floor, with behavior KeepMoving, with color (0, 1, 0)
 
 wall_offset = floor.width/2 + 0.04/2 + 1e-4
 right_wall = new Wall at (wall_offset, 0, 0.25), facing toward floor

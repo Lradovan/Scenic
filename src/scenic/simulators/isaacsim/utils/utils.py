@@ -30,8 +30,14 @@ async def convert(in_file, out_file, load_materials=False):
             break
     return success
 
-def scenicToIsaacSimOrientation(orientation):
+def scenicToIsaacSimOrientation(orientation, initial_rotation=None):
     from omni.isaac.core.utils.rotations import euler_angles_to_quat
 
     yaw, pitch, roll = orientation.eulerAngles
+
+    if initial_rotation:
+        yaw += initial_rotation[0]
+        pitch += initial_rotation[1]
+        roll += initial_rotation[2]
+
     return euler_angles_to_quat([pitch, roll, yaw])
