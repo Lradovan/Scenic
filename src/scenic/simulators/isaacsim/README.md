@@ -8,7 +8,7 @@ To interface with Isaac Sim, follow these steps:
 
 3. To use NVIDIA assets you need to start a local Nucleus server. In the Omniverse Launcher, navigate to the "Nucleus" Tab. If Nucleus hasn't been installed yet, click the install button. Next, click "Add Local Nucleus Server" and follow the on-screen instructions to start a localhost server.
 
-5. To test that everything is working, try the following:
+4. To test that everything is working, try the following:
 ```python
 import scenic
 from scenic.simulators.isaacsim import IsaacSimSimulator
@@ -16,5 +16,7 @@ scenario = scenic.scenarioFromFile("Scenic/examples/isaacsim/create3/basic.sceni
                                    model='scenic.simulators.isaacsim.model')
 scene, _ = scenario.generate()
 simulator = IsaacSimSimulator()
-simulation = simulator.simulate(scene)
+simulation = simulator.simulate(scene, maxSteps=1000)
 ```
+
+5. Note: I am unable to interrupt the Python script using Ctrl+C (nothing happens). So I either set `maxSteps` when calling `simulate`, or manually kill the process.
