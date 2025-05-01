@@ -1,4 +1,6 @@
 import asyncio
+import subprocess
+import trimesh
 
 async def convert(in_file, out_file, load_materials=False):
     # This import causes conflicts when global
@@ -31,7 +33,7 @@ async def convert(in_file, out_file, load_materials=False):
     return success
 
 def scenicToIsaacSimOrientation(orientation, initial_rotation=None):
-    from omni.isaac.core.utils.rotations import euler_angles_to_quat
+    from isaacsim.core.utils.rotations import euler_angles_to_quat
 
     yaw, pitch, roll = orientation.eulerAngles
 
@@ -41,3 +43,18 @@ def scenicToIsaacSimOrientation(orientation, initial_rotation=None):
         roll += initial_rotation[2]
 
     return euler_angles_to_quat([pitch, roll, yaw])
+
+# we use a different environment to not break the simulation app's extensions
+def getShapeFromUSD(usd_path, output_path="temp.obj"):
+    import os
+    env_python_path = os.path.join("env_usd", "Scripts", "python.exe")
+    script_path = os.path.join(os.getcwd(), "extract_mesh.py")
+
+    subprocess.run(
+        [env_python_path, script_path, usd_path, output_path],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    return trimesh.load(output_path)

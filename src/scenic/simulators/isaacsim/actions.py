@@ -9,6 +9,13 @@ class _QuadrupedRobot:
 class _HolonomicRobot:
     pass
 
+class _Robot:
+    pass
+
+class RobotAction(Action):
+    def canBeTakenBy(self, agent):
+        return isinstance(agent, _Robot)
+
 class WheeledRobotAction(Action):
     def canBeTakenBy(self, agent):
         return isinstance(agent, _WheeledRobot)
@@ -20,6 +27,14 @@ class HolonomicRobotAction(Action):
 class QuadrupedRobotAction(Action):
     def canBeTakenBy(self, agent):
         return isinstance(agent, _QuadrupedRobot)
+    
+class setMoveRobot(RobotAction):
+
+    def __init__(self, command):
+        self.command = command
+
+    def applyTo(self, obj, sim):
+        obj.move(sim, self.command)
 
 class setMoveWheeled(WheeledRobotAction):
 

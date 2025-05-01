@@ -39,3 +39,9 @@ behavior DriveForward():
 
     while True:
         take setMoveHolonomic(-0.7, 0.0, 0.0)
+
+# generic robot
+behavior Drive():
+
+    while True:
+        take setMoveRobot([.2, 0])

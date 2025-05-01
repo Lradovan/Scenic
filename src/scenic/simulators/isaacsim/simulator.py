@@ -28,8 +28,8 @@ class IsaacSimSimulation(Simulation):
 
     def __init__(self, scene, client, *, timestep, **kwargs):
 
-        from omni.isaac.core import World
-        from omni.isaac.core.utils.extensions import enable_extension
+        from isaacsim.core.api import World
+        from isaacsim.core.utils.extensions import enable_extension
         enable_extension("omni.kit.asset_converter")
 
         self.client = client
@@ -80,7 +80,7 @@ class IsaacSimSimulation(Simulation):
             self.world.reset()
 
     def getProperties(self, obj, properties):
-        from omni.isaac.core.utils.rotations import quat_to_euler_angles
+        from isaacsim.core.utils.rotations import quat_to_euler_angles
 
         if obj.get_type() == "GroundPlane":  # static object 
             return {prop: getattr(obj, prop) for prop in properties}
@@ -106,5 +106,5 @@ class IsaacSimSimulation(Simulation):
         )
         return values
     
-    def destroy(self):
-       self.client.close()
+    #def destroy(self):
+    #   self.client.close()

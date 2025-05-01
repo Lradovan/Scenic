@@ -1,13 +1,13 @@
-
 import uuid
 import numpy as np
+import os
 from scenic.simulators.isaacsim.behaviors import *
 from scenic.simulators.isaacsim.utils.utils import scenicToIsaacSimOrientation
 
 try:
     from scenic.simulators.isaacsim.simulator import IsaacSimSimulator    # for use in scenarios
     from scenic.simulators.isaacsim.actions import *
-    from scenic.simulators.isaacsim.actions import _WheeledRobot, _QuadrupedRobot, _HolonomicRobot
+    from scenic.simulators.isaacsim.actions import _WheeledRobot, _QuadrupedRobot, _HolonomicRobot, _Robot
     from scenic.simulators.isaacsim.utils.utils import scenicToIsaacSimOrientation
 except ModuleNotFoundError:
     # for convenience when testing without the isaacsim package
@@ -42,22 +42,27 @@ class IsaacSimObject:
 
     def create(self, usd_path):
 
-        from omni.isaac.core.utils import prims
-        from omni.isaac.core.prims import RigidPrim
-        from omni.isaac.core.materials import PreviewSurface
+        from isaacsim.core.utils import prims
+        from isaacsim.core.prims import SingleRigidPrim
+        from isaacsim.core.api.materials import PreviewSurface
         from omni.physx.scripts import utils
+        from isaacsim.core.utils.stage import add_reference_to_stage
 
         prim_path = f"/World/{self.name}"
 
+        # if usd_path:
+        #     add_reference_to_stage(usd_path, prim_path)
+
+        # otherwise, make a prim and add collisions
+        # else:
         prim = prims.create_prim(
             prim_path=prim_path,
-            usd_path=usd_path,
+            usd_path=os.path.abspath(usd_path),
         )
-
         utils.setRigidBody(prim, "convexDecomposition", False)
 
         # wrap with a rigid prim to be able to simulate it
-        rigid_prim = RigidPrim(
+        rigid_prim = SingleRigidPrim(
             prim_path=prim_path, 
             name=self.name,
             position=self.position,
@@ -82,9 +87,53 @@ class IsaacSimObject:
 
         return rigid_prim
 
-class IsaacSimRobot(IsaacSimObject):
+# this is just for the create_3 robot for now..
+def create_controller():
+    from isaacsim.core.api.controllers import BaseController
+    from isaacsim.core.utils.types import ArticulationAction
+    
+    class Controller(BaseController):
+        def __init__(self):
+            super().__init__(name="my_controller")
+            self._wheel_radius = 0.03
+            self._wheel_base = 0.1125
+            
+        def forward(self, command):
+            # Complex control logic
+            joint_velocities = [0.0, 0.0]
+            joint_velocities[0] = ((2 * command[0]) - (command[1] * self._wheel_base)) / (2 * self._wheel_radius)
+            joint_velocities[1] = ((2 * command[0]) + (command[1] * self._wheel_base)) / (2 * self._wheel_radius)
+            # A controller has to return an ArticulationAction
+            return ArticulationAction(joint_velocities=joint_velocities, joint_indices=np.array([0, 1]))
+    
+    return Controller
+
+class IsaacSimRobot(IsaacSimObject, _Robot):
 
     controller: None
+
+    # move the robot
+    def move(self, sim, command):
+        robot = sim.world.scene.get_object(self.name)
+        robot.apply_action(self.controller.forward(command=command))
+
+    def create(self):
+
+        from isaacsim.core.api.robots import Robot
+        from isaacsim.core.utils.stage import add_reference_to_stage
+
+        # self.controller = create_controller()()
+
+        prim_path = f"/World/{self.name}"
+
+        add_reference_to_stage(os.path.abspath(self.usd_path), prim_path)
+
+        return Robot(
+            prim_path=prim_path, 
+            name=self.name,
+            position=self.position,
+            orientation=scenicToIsaacSimOrientation(self.orientation)
+        )
 
     def get_type(self):
         return "Robot"
@@ -101,9 +150,9 @@ class Create3(IsaacSimRobot, _WheeledRobot):
         wheeled_robot.apply_wheel_actions(self.controller.forward(command=[throttle, steering]))
 
     def create(self):
-        from omni.isaac.wheeled_robots.controllers.differential_controller import DifferentialController
-        from omni.isaac.wheeled_robots.robots import WheeledRobot
-        from omni.isaac.core.materials import PreviewSurface
+        from isaacsim.robot.wheeled_robots.controllers.differential_controller import DifferentialController
+        from isaacsim.robot.wheeled_robots.robots import WheeledRobot
+        from isaacsim.core.api.materials import PreviewSurface
 
         self.controller = DifferentialController(name="simple_control", wheel_radius=0.03, wheel_base=0.1125)
         
@@ -139,12 +188,17 @@ class Kaya(IsaacSimRobot, _HolonomicRobot):
         wheeled_robot.apply_wheel_actions(self.controller.forward(command=[forward_speed, lateral_speed, yaw_speed]))
 
     def create(self):
-        from omni.isaac.core.materials import PreviewSurface
-        from omni.isaac.wheeled_robots.controllers.holonomic_controller import HolonomicController
-        from omni.isaac.wheeled_robots.robots import WheeledRobot
-        from omni.isaac.wheeled_robots.robots.holonomic_robot_usd_setup import HolonomicRobotUsdSetup
+        from isaacsim.core.api.materials import PreviewSurface
+        from isaacsim.robot.wheeled_robots.controllers.holonomic_controller import HolonomicController
+        from isaacsim.robot.wheeled_robots.robots import WheeledRobot
+        from isaacsim.robot.wheeled_robots.robots.holonomic_robot_usd_setup import HolonomicRobotUsdSetup
+        from isaacsim.storage.native import get_assets_root_path
 
-        usd_path = "omniverse://localhost/NVIDIA/Assets/Isaac/4.2/Isaac/Robots/Kaya/kaya.usd"
+        assets_root_path = get_assets_root_path()
+        if assets_root_path is None:
+            carb.log_error("Could not find Isaac Sim assets folder")
+
+        kaya_asset_path = assets_root_path + "/Isaac/Robots/Kaya/kaya.usd"
         prim_path = f"/World/{self.name}"
 
         prim = WheeledRobot(
@@ -152,7 +206,7 @@ class Kaya(IsaacSimRobot, _HolonomicRobot):
             name=self.name,
             wheel_dof_names=["axle_0_joint", "axle_1_joint", "axle_2_joint"],
             create_robot=True,
-            usd_path=usd_path,
+            usd_path=kaya_asset_path,
             position=self.position,
             orientation=scenicToIsaacSimOrientation(self.orientation, initial_rotation=[np.pi/2, 0, 0]),
         )
@@ -199,7 +253,7 @@ class GroundPlane(IsaacSimObject):
         return "GroundPlane"
 
     def create(self):
-        from omni.isaac.core.objects import GroundPlane
+        from isaacsim.core.api.objects import GroundPlane
 
         return GroundPlane(
             name=self.name,
