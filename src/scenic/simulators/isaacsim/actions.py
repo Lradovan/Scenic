@@ -3,9 +3,6 @@ from scenic.core.simulators import Action
 class _WheeledRobot:
     pass
 
-class _QuadrupedRobot:
-    pass
-
 class _HolonomicRobot:
     pass
 

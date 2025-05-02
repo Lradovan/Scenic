@@ -52,10 +52,9 @@ class IsaacSimSimulation(Simulation):
     def createObjectInSimulator(self, obj):
         
         isaac_sim_obj = None
-        #ground plane or robot
-        if obj.get_type() != 'IsaacSimObject':
-            isaac_sim_obj = obj.create()
-        else: 
+
+        # object without usd
+        if obj.get_type() == 'IsaacSimObject' and not obj.usd_path:
             objectScaledMesh = MeshVolumeRegion(
                 mesh=obj.shape.mesh,
                 dimensions=(obj.width, obj.length, obj.height),
@@ -64,8 +63,9 @@ class IsaacSimSimulation(Simulation):
             usd_file_path = path.join(self.tmpMeshDir, f"{obj.name}.usd")
             trimesh.exchange.export.export_mesh(objectScaledMesh, obj_file_path)
             asyncio.get_event_loop().run_until_complete(utils.convert(obj_file_path, usd_file_path, True))
+            obj.usd_path = usd_file_path
 
-            isaac_sim_obj = obj.create(usd_path=usd_file_path)
+        isaac_sim_obj = obj.create()
 
         if not obj.gravity:
             isaac_sim_obj.prim.GetAttribute("physxRigidBody:disableGravity").Set(True)
@@ -106,5 +106,5 @@ class IsaacSimSimulation(Simulation):
         )
         return values
     
-    #def destroy(self):
-    #   self.client.close()
+    def destroy(self):
+      self.client.close()

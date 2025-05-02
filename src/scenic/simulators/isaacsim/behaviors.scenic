@@ -1,11 +1,6 @@
 from scenic.simulators.isaacsim.actions import *
 import numpy as np
 
-behavior FollowPath():
-
-    while True:
-        take advance()
-
 # for the create3 wheeled robot
 behavior KeepMoving():
 
@@ -18,6 +13,19 @@ behavior KeepMoving():
                 take setMoveWheeled(0, np.pi)
         else:
             take setMoveWheeled(.2, 0)
+
+# for the create 3 custom robot
+behavior KeepMovingCustom():
+
+    threshold = .01
+    while True:
+        if np.linalg.norm(self.speed) < threshold:
+            for i in range(100):
+                take setMoveRobot([-.2, 0])
+            for i in range(50):
+                take setMoveRobot([0, np.pi])
+        else:
+            take setMoveRobot([.2, 0])
 
 # for the kaya robot
 behavior RandomMovement():
@@ -39,9 +47,3 @@ behavior DriveForward():
 
     while True:
         take setMoveHolonomic(-0.7, 0.0, 0.0)
-
-# generic robot
-behavior Drive():
-
-    while True:
-        take setMoveRobot([.2, 0])
