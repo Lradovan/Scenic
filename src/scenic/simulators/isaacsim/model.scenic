@@ -31,22 +31,64 @@ except ModuleNotFoundError:
 
 class IsaacSimObject:
     name: f"Object_{uuid.uuid4().hex[:8]}"
-    gravity: True
-    physics: True
-    mass: None
-    density: None
     usd_path: None
 
+    def is_isaac_sim_object(self): pass
+
+    def _apply_color(self, prim):
+        from isaacsim.core.api.materials import PreviewSurface
+
+        if self.color:
+            material = PreviewSurface(prim_path=f"/World/material/{self.name}", color=np.array(self.color))
+            prim.apply_visual_material(material)
+
+class Environment:
+    usd_path: None
+
+    def create(self):
+        pass
+
+# used for imovable things, like walls
+class StaticObject(IsaacSimObject):
+
     def get_type(self):
-        return "IsaacSimObject"
+        return "StaticObject"
+
+    def create(self):
+
+        from isaacsim.core.utils import prims
+        from isaacsim.core.prims import SingleGeometryPrim
+
+        prim_path = f"/World/{self.name}"
+
+        prim = prims.create_prim(prim_path=prim_path, usd_path=os.path.abspath(self.usd_path))
+
+        obj = SingleGeometryPrim(
+            prim_path=prim_path,
+            name=self.name,
+            position=self.position,
+            orientation=scenicToIsaacSimOrientation(self.orientation),
+            collision=True,
+        )
+
+        self._apply_color(obj)
+
+        return obj
+
+# used for things that need physics applied to them
+class DynamicObject(IsaacSimObject):
+
+    mass: None
+    density: None
+
+    def get_type(self):
+        return "DynamicObject"
 
     def create(self):
 
         from isaacsim.core.utils import prims
         from isaacsim.core.prims import SingleRigidPrim
-        from isaacsim.core.api.materials import PreviewSurface
         from omni.physx.scripts import utils
-        from isaacsim.core.utils.stage import add_reference_to_stage
 
         prim_path = f"/World/{self.name}"
 
@@ -57,7 +99,7 @@ class IsaacSimObject:
         utils.setRigidBody(prim, "convexDecomposition", False)
 
         # wrap with a rigid prim to be able to simulate it
-        rigid_prim = SingleRigidPrim(
+        obj = SingleRigidPrim(
             prim_path=prim_path, 
             name=self.name,
             position=self.position,
@@ -67,20 +109,9 @@ class IsaacSimObject:
             linear_velocity=self.velocity)
 
         # apply material to change the color if specified
-        if self.color:
-            material = PreviewSurface(
-                prim_path=f"/World/material/{self.name}",  
-                color=np.array(self.color)
-            )
-            rigid_prim.apply_visual_material(material)
+        self._apply_color(obj)
 
-        if self.physics:
-            rigid_prim.enable_rigid_body_physics()
-        else:
-            rigid_prim.disable_rigid_body_physics()
-
-        return rigid_prim
-
+        return obj 
 
 def create_controller(forward_func, name): 
     from isaacsim.core.api.controllers import BaseController
@@ -93,7 +124,6 @@ def create_controller(forward_func, name):
             return forward_func(command)
     
     return Controller
-
 
 class IsaacSimRobot(IsaacSimObject, _Robot):
 
@@ -126,13 +156,12 @@ class IsaacSimRobot(IsaacSimObject, _Robot):
     def get_type(self):
         return "Robot"
 
-
 class Create3(IsaacSimRobot, _WheeledRobot):
 
     shape: CylinderShape()
     width: 0.335
     length: 0.335
-    height: 0.07
+    height: .1
 
     def move(self, sim, throttle=0, steering=0):
         wheeled_robot = sim.world.scene.get_object(self.name)
@@ -157,7 +186,7 @@ class Create3(IsaacSimRobot, _WheeledRobot):
             prim_path=prim_path, 
             name=self.name,
             create_robot=True,
-            orientation=scenicToIsaacSimOrientation(self.orientation, initial_rotation=[np.pi/2, 0, 0]),
+            orientation=scenicToIsaacSimOrientation(self.orientation, initial_rotation=[0, 0, 0]),
             position=self.position,
             usd_path=create3_asset_path,
             wheel_dof_names=["left_wheel_joint", "right_wheel_joint"])
@@ -170,7 +199,6 @@ class Create3(IsaacSimRobot, _WheeledRobot):
             prim.apply_visual_material(material)
 
         return prim
-
 
 class Kaya(IsaacSimRobot, _HolonomicRobot):
 
@@ -238,14 +266,11 @@ class Kaya(IsaacSimRobot, _HolonomicRobot):
 
         return prim
 
-class GroundPlane(IsaacSimObject):
+class GroundPlane(StaticObject):
 
     width: 5
     length: 5
     height: 0.01
-
-    def get_type(self):
-        return "GroundPlane"
 
     def create(self):
         from isaacsim.core.api.objects import GroundPlane

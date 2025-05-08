@@ -1,6 +1,7 @@
 import asyncio
 import subprocess
 import trimesh
+import numpy as np
 
 async def convert(in_file, out_file, load_materials=False):
     # This import causes conflicts when global
@@ -31,6 +32,22 @@ async def convert(in_file, out_file, load_materials=False):
         else:
             break
     return success
+
+def isPlanar(mesh, tolerance=1e-3):
+    if not isinstance(mesh, trimesh.Trimesh):
+        raise ValueError("Input must be a trimesh.Trimesh object.")
+
+    if len(mesh.vertices) <= 2:
+      return True
+
+    # Fit a plane to the mesh vertices
+    plane_origin, plane_normal = trimesh.points.plane_fit(mesh.vertices)
+
+    # Calculate the distance from each vertex to the plane
+    distances = np.abs(np.dot(mesh.vertices - plane_origin, plane_normal))
+
+    # Check if all distances are within the tolerance
+    return np.all(distances <= tolerance)
 
 def scenicToIsaacSimOrientation(orientation, initial_rotation=None):
     from isaacsim.core.utils.rotations import euler_angles_to_quat

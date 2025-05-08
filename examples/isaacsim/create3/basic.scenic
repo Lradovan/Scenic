@@ -4,7 +4,7 @@ from scenic.simulators.isaacsim.behaviors import *
 param numToys = 5
 param duration = 5
 
-class DiningChair(IsaacSimObject):
+class DiningChair(DynamicObject):
     shape: MeshShape.fromFile(localPath("../../../assets/meshes/dining_chair.obj.bz2"), initial_rotation=(180 deg, 0, 0))
     density: 670 # Density of solid birch
     width: 0.4
@@ -12,7 +12,7 @@ class DiningChair(IsaacSimObject):
     height: 1
     color: [0.54, 0.27, 0.074]
 
-class DiningTable(IsaacSimObject):
+class DiningTable(DynamicObject):
     shape: MeshShape.fromFile(localPath("../../../assets/meshes/dining_table.obj.bz2"))
     density: 670 # Density of solid birch
     width: Range(0.7, 1.5)
@@ -20,29 +20,27 @@ class DiningTable(IsaacSimObject):
     height: 0.75
     color: [0.54, 0.27, 0.074]
 
-class CoffeeTable(IsaacSimObject):
+class CoffeeTable(DynamicObject):
     shape: MeshShape.fromFile(localPath("../../../assets/meshes/coffee_table.obj.bz2"))
     width: 1.5
     length: 0.5
     height: 0.4
     color: [0.54, 0.27, 0.074]
 
-class Wall(IsaacSimObject):
+class Wall(StaticObject):
     width: 5
-    physics: False
-    gravity: False
     length: 0.04
     height: 0.5
     color: [0.627, 0.627, 0.627]
 
-class Couch(IsaacSimObject):
+class Couch(StaticObject):
     shape: MeshShape.fromFile(localPath("../../../assets/meshes/couch.obj.bz2"), initial_rotation=(-90 deg, 0, 0))
     width: 2
     length: 0.75
     height: 0.75
     color: [0.2, 0.2, 1]
 
-class Toy(IsaacSimObject):
+class Toy(DynamicObject):
     shape: Uniform(BoxShape(), CylinderShape(), ConeShape(), SpheroidShape())
     width: 0.1
     length: 0.1
@@ -50,12 +48,19 @@ class Toy(IsaacSimObject):
     density: 100
     color: [1, 0.502, 0]
 
+class Box(DynamicObject):
+    width: .2
+    height: .2
+    length: .2
+    density: 50
+    color: Uniform([1, 0.502, 0], [1, 0, 0], [0, 1, 1], [1, 0, 1])
+
 room_region = RectangularRegion(0 @ 0, 0, 5.09, 5.09)
 workspace = Workspace(room_region)
 
 floor = new GroundPlane with color (1, 1, 1), with width 5, with length 5
 
-ego = new Create3 on floor, with behavior KeepMoving, with color (0, 1, 0)
+ego = new Create3 on floor, with behavior KeepMoving, with color (1, 0, 0)
 
 wall_offset = floor.width/2 + 0.04/2 + 1e-4
 right_wall = new Wall at (wall_offset, 0, 0.25), facing toward floor
@@ -89,8 +94,10 @@ couch = new Couch ahead of left_wall by 0.335,
 coffee_table = new CoffeeTable ahead of couch by 0.336,
             on floor, facing away from couch
 
+record ego.position
+
 # Add some noise to the positions of the couch and coffee table
-mutate couch, coffee_table
+# mutate couch, coffee_table
 
 # Spawn some toys
 for _ in range(globalParameters.numToys):

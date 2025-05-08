@@ -1,7 +1,7 @@
 model scenic.simulators.isaacsim.model
 from scenic.simulators.isaacsim.behaviors import RandomMovement
 
-class Box(IsaacSimObject):
+class Box(DynamicObject):
     width: .2
     height: .2
     length: .2

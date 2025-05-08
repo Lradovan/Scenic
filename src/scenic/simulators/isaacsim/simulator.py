@@ -54,7 +54,7 @@ class IsaacSimSimulation(Simulation):
         isaac_sim_obj = None
 
         # object without usd
-        if obj.get_type() == 'IsaacSimObject' and not obj.usd_path:
+        if hasattr(obj, "is_isaac_sim_object") and not obj.usd_path:
             objectScaledMesh = MeshVolumeRegion(
                 mesh=obj.shape.mesh,
                 dimensions=(obj.width, obj.length, obj.height),
@@ -67,8 +67,8 @@ class IsaacSimSimulation(Simulation):
 
         isaac_sim_obj = obj.create()
 
-        if not obj.gravity:
-            isaac_sim_obj.prim.GetAttribute("physxRigidBody:disableGravity").Set(True)
+        # if not obj.gravity:
+        #     isaac_sim_obj.prim.GetAttribute("physxRigidBody:disableGravity").Set(True)
 
         try:
             self.world.scene.add(isaac_sim_obj)
@@ -82,7 +82,7 @@ class IsaacSimSimulation(Simulation):
     def getProperties(self, obj, properties):
         from isaacsim.core.utils.rotations import quat_to_euler_angles
 
-        if obj.get_type() == "GroundPlane":  # static object 
+        if obj.get_type() == "StaticObject":  # static object 
             return {prop: getattr(obj, prop) for prop in properties}
 
         isaacObj = self.world.scene.get_object(obj.name)
@@ -106,5 +106,5 @@ class IsaacSimSimulation(Simulation):
         )
         return values
     
-    def destroy(self):
-      self.client.close()
+    # def destroy(self):
+    #   self.client.close()

@@ -5,7 +5,7 @@ from robot import *
 
 floor = new GroundPlane with color (1, 1, 1), with width 8, with length 8
 
-class Box(IsaacSimObject):
+class Box(DynamicObject):
     width: .2
     height: .2
     length: .2
@@ -13,7 +13,7 @@ class Box(IsaacSimObject):
     physics: True
     color: Uniform([1, 0.502, 0], [1, 0, 0], [0, 1, 1], [1, 0, 1])
 
-class Pallet(IsaacSimObject):
+class Pallet(DynamicObject):
     usd_path: localPath("../../../assets/meshes/pallet.usd")
     shape: MeshShape.fromFile(localPath("../../../assets/meshes_converted/pallet_usd.obj"))
     color: [1, .65, 0]
