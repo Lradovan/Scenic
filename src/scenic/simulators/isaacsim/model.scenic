@@ -1,14 +1,18 @@
 import uuid
 import numpy as np
 import os
+import trimesh
+import json
 from scenic.simulators.isaacsim.behaviors import *
 from scenic.simulators.isaacsim.utils.utils import scenicToIsaacSimOrientation
+from scenic.core.utils import repairMesh
+from trimesh.transformations import decompose_matrix
 
 try:
     from scenic.simulators.isaacsim.simulator import IsaacSimSimulator    # for use in scenarios
     from scenic.simulators.isaacsim.actions import *
     from scenic.simulators.isaacsim.actions import _Robot, _WheeledRobot, _HolonomicRobot
-    from scenic.simulators.isaacsim.utils.utils import scenicToIsaacSimOrientation
+    from scenic.simulators.isaacsim.utils.utils import scenicToIsaacSimOrientation, _addPreexistingObj, isPlanar, planeToMesh
 except ModuleNotFoundError:
     # for convenience when testing without the isaacsim package
     from scenic.core.simulators import SimulatorInterfaceWarning
@@ -29,89 +33,72 @@ except ModuleNotFoundError:
     class _WheeledRobot: pass
     class _HolonomicRobot: pass
 
+# -- global parameters ---------------
+
+#param timestep = 1.0/60.0
+param environmentUSDPath = None
+param environmentInfoPath = None
+param environmentMeshPath = None
+environmentMeshPath = globalParameters.environmentMeshPath
+environmentInfoPath = globalParameters.environmentInfoPath
+
+# ---------- simulator creation ----------
+
+simulator IsaacSimSimulator(environmentUSDPath=globalParameters.environmentUSDPath)
+
+# ---------- base classes ----------
+
 class IsaacSimObject:
+
     name: f"Object_{uuid.uuid4().hex[:8]}"
+    physics: True
+    mass: None
+    density: None
     usd_path: None
-
-    def is_isaac_sim_object(self): pass
-
-    def _apply_color(self, prim):
-        from isaacsim.core.api.materials import PreviewSurface
-
-        if self.color:
-            material = PreviewSurface(prim_path=f"/World/material/{self.name}", color=np.array(self.color))
-            prim.apply_visual_material(material)
-
-class Environment:
-    usd_path: None
-
-    def create(self):
-        pass
-
-# used for imovable things, like walls
-class StaticObject(IsaacSimObject):
-
-    def get_type(self):
-        return "StaticObject"
+    blueprint: "IsaacSimObject"
 
     def create(self):
 
         from isaacsim.core.utils import prims
-        from isaacsim.core.prims import SingleGeometryPrim
+        from isaacsim.core.prims import SingleGeometryPrim, SingleRigidPrim
+        from isaacsim.core.api.materials import PreviewSurface
+        from omni.physx.scripts import utils
 
         prim_path = f"/World/{self.name}"
 
         prim = prims.create_prim(prim_path=prim_path, usd_path=os.path.abspath(self.usd_path))
 
-        obj = SingleGeometryPrim(
-            prim_path=prim_path,
-            name=self.name,
-            position=self.position,
-            orientation=scenicToIsaacSimOrientation(self.orientation),
-            collision=True,
-        )
+        if self.physics:
+            utils.setRigidBody(prim, "convexDecomposition", False)
 
-        self._apply_color(obj)
+            obj = SingleRigidPrim(
+                prim_path=prim_path, 
+                name=self.name,
+                position=self.position,
+                orientation=scenicToIsaacSimOrientation(self.orientation),
+                mass=self.mass,
+                density=self.density,
+                linear_velocity=self.velocity)
+        
+        else:
+            obj = SingleGeometryPrim(
+                prim_path=prim_path,
+                name=self.name,
+                position=self.position,
+                orientation=scenicToIsaacSimOrientation(self.orientation),
+                collision=True,
+            )
+
+        if self.color:
+            material = PreviewSurface(prim_path=f"/World/material/{self.name}", color=np.array(self.color))
+            obj.apply_visual_material(material)
 
         return obj
 
-# used for things that need physics applied to them
-class DynamicObject(IsaacSimObject):
-
-    mass: None
-    density: None
-
-    def get_type(self):
-        return "DynamicObject"
-
-    def create(self):
-
-        from isaacsim.core.utils import prims
-        from isaacsim.core.prims import SingleRigidPrim
-        from omni.physx.scripts import utils
-
-        prim_path = f"/World/{self.name}"
-
-        prim = prims.create_prim(
-            prim_path=prim_path,
-            usd_path=os.path.abspath(self.usd_path),
-        )
-        utils.setRigidBody(prim, "convexDecomposition", False)
-
-        # wrap with a rigid prim to be able to simulate it
-        obj = SingleRigidPrim(
-            prim_path=prim_path, 
-            name=self.name,
-            position=self.position,
-            orientation=scenicToIsaacSimOrientation(self.orientation),
-            mass=self.mass,
-            density=self.density,
-            linear_velocity=self.velocity)
-
-        # apply material to change the color if specified
-        self._apply_color(obj)
-
-        return obj 
+class IsaacSimPreexisting(IsaacSimObject):
+    allowCollisions: True
+    blueprint: "IsaacSimPreexisting"
+    physics: False
 
 def create_controller(forward_func, name): 
     from isaacsim.core.api.controllers import BaseController
@@ -129,6 +116,7 @@ class IsaacSimRobot(IsaacSimObject, _Robot):
 
     controller: None
     control: None
+    blueprint: "Robot"
 
     def move(self, sim, command):
         robot = sim.world.scene.get_object(self.name)
@@ -152,9 +140,6 @@ class IsaacSimRobot(IsaacSimObject, _Robot):
             position=self.position,
             orientation=scenicToIsaacSimOrientation(self.orientation)
         )
-
-    def get_type(self):
-        return "Robot"
 
 class Create3(IsaacSimRobot, _WheeledRobot):
 
@@ -266,11 +251,13 @@ class Kaya(IsaacSimRobot, _HolonomicRobot):
 
         return prim
 
-class GroundPlane(StaticObject):
+class GroundPlane(IsaacSimObject):
 
     width: 5
     length: 5
     height: 0.01
+    physics: False
+    blueprint: "GroundPlane"
 
     def create(self):
         from isaacsim.core.api.objects import GroundPlane
@@ -282,3 +269,24 @@ class GroundPlane(StaticObject):
             color=np.array(self.color) if self.color else None,
             scale=[self.width, self.length, self.height]
         )
+
+# ---------- body ----------
+if globalParameters.environmentUSDPath:
+
+    scene = trimesh.load(localPath(environmentMeshPath))
+
+    with open(environmentInfoPath, "r") as inFile:
+        meshData = json.load(inFile)
+
+        for node_name in scene.graph.nodes_geometry:
+            if node_name in meshData:
+                mesh = scene.geometry[node_name]
+
+                if isPlanar(mesh): 
+                    mesh = planeToMesh(mesh)
+
+                trans = np.array(meshData[node_name]) # ['position']) 
+                #quat = np.array(meshData[node_name]['orientation'])
+                #orientation = Orientation.fromQuaternion(quat)
+                newObj = new IsaacSimPreexisting at trans, with shape MeshShape(repairMesh(mesh.apply_scale(.01))), with name node_name
+                _addPreexistingObj(newObj)

@@ -12,27 +12,29 @@ import trimesh
 
 class IsaacSimSimulator(Simulator):
 
-    def __init__(self):
+    def __init__(self, environmentUSDPath):
         super().__init__()
-        # launch isaac sim - needs to run before any additional imports
         self.client = SimulationApp({"headless": False})
+        self.environmentUSDPath = environmentUSDPath
 
     def createSimulation(self, scene, **kwargs):
         return IsaacSimSimulation(
             scene,
             self.client,
+            self.environmentUSDPath,
             **kwargs
         )
 
 class IsaacSimSimulation(Simulation):
 
-    def __init__(self, scene, client, *, timestep, **kwargs):
+    def __init__(self, scene, client, environmentUSDPath, *, timestep, **kwargs):
 
         from isaacsim.core.api import World
         from isaacsim.core.utils.extensions import enable_extension
         enable_extension("omni.kit.asset_converter")
 
         self.client = client
+        self.environmentUSDPath = environmentUSDPath
         timestep = 1.0/60.0 if timestep is None else timestep
         self.world = World(stage_units_in_meters=1.0, physics_dt=timestep, rendering_dt=timestep)
         self.tmpMeshDir = tempfile.mkdtemp()
@@ -40,9 +42,12 @@ class IsaacSimSimulation(Simulation):
 
     def setup(self):
         import omni.kit.actions.core
+        import isaacsim.core.utils.stage as stage_utils
         super().setup()
         action_registry = omni.kit.actions.core.get_action_registry()
         action = action_registry.get_action("omni.kit.viewport.menubar.lighting", "set_lighting_mode_camera")
+        if self.environmentUSDPath:
+            stage_utils.add_reference_to_stage(self.environmentUSDPath, f"/World/environment") 
         action.execute()
         self.world.play()
 
@@ -53,8 +58,11 @@ class IsaacSimSimulation(Simulation):
         
         isaac_sim_obj = None
 
+        if obj.blueprint == "IsaacSimPreexisting":
+            return
+
         # object without usd
-        if hasattr(obj, "is_isaac_sim_object") and not obj.usd_path:
+        if obj.blueprint == "IsaacSimObject" and not obj.usd_path:
             objectScaledMesh = MeshVolumeRegion(
                 mesh=obj.shape.mesh,
                 dimensions=(obj.width, obj.length, obj.height),
@@ -70,19 +78,22 @@ class IsaacSimSimulation(Simulation):
         # if not obj.gravity:
         #     isaac_sim_obj.prim.GetAttribute("physxRigidBody:disableGravity").Set(True)
 
+        if obj.blueprint == "IsaacSimEnvironment":
+            return
+
         try:
             self.world.scene.add(isaac_sim_obj)
         except:
             raise SimulationCreationError(f"Unable to add {obj.name} to world")
         
         # if it is a robot we need to reset the world
-        if obj.get_type() == 'Robot':
+        if obj.blueprint == 'Robot':
             self.world.reset()
 
     def getProperties(self, obj, properties):
         from isaacsim.core.utils.rotations import quat_to_euler_angles
 
-        if obj.get_type() == "StaticObject":  # static object 
+        if not obj.physics:  # static object 
             return {prop: getattr(obj, prop) for prop in properties}
 
         isaacObj = self.world.scene.get_object(obj.name)

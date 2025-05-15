@@ -1,5 +1,4 @@
 import asyncio
-import subprocess
 import trimesh
 import numpy as np
 
@@ -33,20 +32,24 @@ async def convert(in_file, out_file, load_materials=False):
             break
     return success
 
+def planeToMesh(mesh):
+    
+    normal = mesh.face_normals[0]
+    polygon = trimesh.path.polygons.projected(mesh, normal=normal)
+    extruded = trimesh.creation.extrude_polygon(polygon, height=.01)
+
+    # fix the orientation
+    z_axis = np.array([0, 0, 1])
+    rotation = trimesh.geometry.align_vectors(z_axis, normal)
+    extruded.apply_transform(rotation)
+    
+    return extruded
+    
 def isPlanar(mesh, tolerance=1e-3):
-    if not isinstance(mesh, trimesh.Trimesh):
-        raise ValueError("Input must be a trimesh.Trimesh object.")
 
-    if len(mesh.vertices) <= 2:
-      return True
-
-    # Fit a plane to the mesh vertices
     plane_origin, plane_normal = trimesh.points.plane_fit(mesh.vertices)
-
-    # Calculate the distance from each vertex to the plane
     distances = np.abs(np.dot(mesh.vertices - plane_origin, plane_normal))
 
-    # Check if all distances are within the tolerance
     return np.all(distances <= tolerance)
 
 def scenicToIsaacSimOrientation(orientation, initial_rotation=None):
@@ -62,16 +65,24 @@ def scenicToIsaacSimOrientation(orientation, initial_rotation=None):
     return euler_angles_to_quat([pitch, roll, yaw])
 
 # we use a different environment to not break the simulation app's extensions
-def getShapeFromUSD(usd_path, output_path="temp.obj"):
-    import os
-    env_python_path = os.path.join("env_usd", "Scripts", "python.exe")
-    script_path = os.path.join(os.getcwd(), "extract_mesh.py")
+# def getShapeFromUSD(usd_path, output_path="temp.obj"):
+#     import os
+#     env_python_path = os.path.join("env_usd", "Scripts", "python.exe")
+#     script_path = os.path.join(os.getcwd(), "extract_mesh.py")
 
-    subprocess.run(
-        [env_python_path, script_path, usd_path, output_path],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+#     subprocess.run(
+#         [env_python_path, script_path, usd_path, output_path],
+#         check=True,
+#         capture_output=True,
+#         text=True,
+#     )
 
-    return trimesh.load(output_path)
+#     return trimesh.load(output_path)
+
+_prexistingObjs = {}
+
+def _addPreexistingObj(obj):
+    _prexistingObjs[obj.name] = obj
+
+def getPreexistingObj(objName):
+    return _prexistingObjs[objName]
