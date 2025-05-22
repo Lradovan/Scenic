@@ -1,9 +1,9 @@
 from scenic.simulators.isaacsim.behaviors import *
 from scenic.simulators.isaacsim.utils.utils import getPreexistingObj
 
-param environmentUSDPath = "C:/isaacsim_assets/Assets/Isaac/4.5/Isaac/Environments/Simple_Room/simple_room.usd"
-param environmentMeshPath = localPath("../../../assets/meshes_converted/simple_room_usd.gltf")
-param environmentInfoPath = localPath("usd_room_bb.json")
+param environmentUSDPath = localPath("../../../assets/usd/simple_room_flattened.usd")
+param environmentMeshPath = localPath("../../../assets/meshes_converted/simple_room_flattened_usd.gltf")
+param environmentInfoPath = localPath("./simple_room_flattened_info.json")
 param numToys = 10
 
 model scenic.simulators.isaacsim.model
@@ -16,9 +16,9 @@ class Toy(IsaacSimObject):
     density: 100
     color: [1, 0.502, 0]
 
-floor = getPreexistingObj('Towel_Room01_floor_bottom')
+floor = getPreexistingObj("/Root/Towel_Room01_floor_bottom_218/Towel_Room01_floor_bottom")
 
-ego = new Create3 on floor, with color (1, 0, 0), with behavior KeepMoving
+ego = new Create3 on floor, with color (1, 0, 0)#, with behavior KeepMoving
 
 for _ in range(globalParameters.numToys):
-    new Toy on floor
+   new Toy on floor

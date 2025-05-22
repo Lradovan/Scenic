@@ -1,0 +1,1118 @@
+{
+  "prim_0": {
+    "full_path": "/Root/SM_BeamA_9M25/SM_BeamA_9M"
+  },
+  "prim_1": {
+    "full_path": "/Root/SM_BeamA_9M26/SM_BeamA_9M"
+  },
+  "prim_2": {
+    "full_path": "/Root/SM_BeamA_9M27/SM_BeamA_9M"
+  },
+  "prim_3": {
+    "full_path": "/Root/SM_BeamA_9M29/SM_BeamA_9M"
+  },
+  "prim_4": {
+    "full_path": "/Root/SM_BeamA_9M30/SM_BeamA_9M"
+  },
+  "prim_5": {
+    "full_path": "/Root/SM_BeamA_9M31/SM_BeamA_9M"
+  },
+  "prim_6": {
+    "full_path": "/Root/SM_BeamA_9M33/SM_BeamA_9M"
+  },
+  "prim_7": {
+    "full_path": "/Root/SM_BeamA_9M34/SM_BeamA_9M"
+  },
+  "prim_8": {
+    "full_path": "/Root/SM_BeamA_9M35/SM_BeamA_9M"
+  },
+  "prim_9": {
+    "full_path": "/Root/SM_BeamA_9M37/SM_BeamA_9M"
+  },
+  "prim_10": {
+    "full_path": "/Root/SM_BeamA_9M38/SM_BeamA_9M"
+  },
+  "prim_11": {
+    "full_path": "/Root/SM_BeamA_9M39/SM_BeamA_9M"
+  },
+  "prim_12": {
+    "full_path": "/Root/SM_BracketBeam_6m10/SM_BracketBeam_3m"
+  },
+  "prim_13": {
+    "full_path": "/Root/SM_BracketBeam_6m11/SM_BracketBeam_3m"
+  },
+  "prim_14": {
+    "full_path": "/Root/SM_BracketBeam_6m12/SM_BracketBeam"
+  },
+  "prim_15": {
+    "full_path": "/Root/SM_BracketBeam_6m13/SM_BracketBeam_3m"
+  },
+  "prim_16": {
+    "full_path": "/Root/SM_BracketBeam_6m14/SM_BracketBeam_3m"
+  },
+  "prim_17": {
+    "full_path": "/Root/SM_BracketBeam_6m15/SM_BracketBeam_3m"
+  },
+  "prim_18": {
+    "full_path": "/Root/SM_BracketBeam_6m16/SM_BracketBeam_3m"
+  },
+  "prim_19": {
+    "full_path": "/Root/SM_BracketBeam_6m7/SM_BracketBeam_3m"
+  },
+  "prim_20": {
+    "full_path": "/Root/SM_BracketBeam_6m8/SM_BracketBeam_3m"
+  },
+  "prim_21": {
+    "full_path": "/Root/SM_BracketBeam_6m9/SM_BracketBeam_3m"
+  },
+  "prim_22": {
+    "full_path": "/Root/SM_BracketSlot10/SM_BracketSlot"
+  },
+  "prim_23": {
+    "full_path": "/Root/SM_BracketSlot12/SM_BracketSlot"
+  },
+  "prim_24": {
+    "full_path": "/Root/SM_BracketSlot13/SM_BracketSlot"
+  },
+  "prim_25": {
+    "full_path": "/Root/SM_BracketSlot14/SM_BracketSlot"
+  },
+  "prim_26": {
+    "full_path": "/Root/SM_BracketSlot15/SM_BracketSlot"
+  },
+  "prim_27": {
+    "full_path": "/Root/SM_BracketSlot16/SM_BracketSlot"
+  },
+  "prim_28": {
+    "full_path": "/Root/SM_BracketSlot17/SM_BracketSlot"
+  },
+  "prim_29": {
+    "full_path": "/Root/SM_BracketSlot18/SM_BracketSlot"
+  },
+  "prim_30": {
+    "full_path": "/Root/SM_BracketSlot19/SM_BracketSlot"
+  },
+  "prim_31": {
+    "full_path": "/Root/SM_BracketSlot20/SM_BracketSlot"
+  },
+  "prim_32": {
+    "full_path": "/Root/SM_BracketSlot21/SM_BracketSlot"
+  },
+  "prim_33": {
+    "full_path": "/Root/SM_BracketSlot22/SM_BracketSlot"
+  },
+  "prim_34": {
+    "full_path": "/Root/SM_BracketSlot23/SM_BracketSlot"
+  },
+  "prim_35": {
+    "full_path": "/Root/SM_BracketSlot24/SM_BracketSlot"
+  },
+  "prim_36": {
+    "full_path": "/Root/SM_BracketSlot26_1493/SM_BracketSlot"
+  },
+  "prim_37": {
+    "full_path": "/Root/SM_BracketSlot27/SM_BracketSlot"
+  },
+  "prim_38": {
+    "full_path": "/Root/SM_BracketSlot3/SM_BracketSlot"
+  },
+  "prim_39": {
+    "full_path": "/Root/SM_BracketSlot41/SM_BracketSlot"
+  },
+  "prim_40": {
+    "full_path": "/Root/SM_BracketSlot8/SM_BracketSlot"
+  },
+  "prim_41": {
+    "full_path": "/Root/SM_BracketSlot9/SM_BracketSlot"
+  },
+  "prim_42": {
+    "full_path": "/Root/SM_CeilingA_6X17/SM_CeilingA_6X6"
+  },
+  "prim_43": {
+    "full_path": "/Root/SM_CeilingA_6X19/SM_CeilingA_6X6"
+  },
+  "prim_44": {
+    "full_path": "/Root/SM_CeilingA_6X21/SM_CeilingA_6X6"
+  },
+  "prim_45": {
+    "full_path": "/Root/SM_CeilingA_6X23/SM_CeilingA_6X6"
+  },
+  "prim_46": {
+    "full_path": "/Root/SM_CeilingA_6X25/SM_CeilingA_6X6"
+  },
+  "prim_47": {
+    "full_path": "/Root/SM_CeilingA_6X27/SM_CeilingA_6X6"
+  },
+  "prim_48": {
+    "full_path": "/Root/SM_CeilingA_6X28/SM_CeilingA_6X6"
+  },
+  "prim_49": {
+    "full_path": "/Root/SM_CeilingA_6X29/SM_CeilingA_6X6"
+  },
+  "prim_50": {
+    "full_path": "/Root/SM_CeilingA_6X30/SM_CeilingA_6X6"
+  },
+  "prim_51": {
+    "full_path": "/Root/SM_CeilingA_6X31/SM_CeilingA_6X6"
+  },
+  "prim_52": {
+    "full_path": "/Root/SM_CeilingA_6X34/SM_CeilingA_6X6"
+  },
+  "prim_53": {
+    "full_path": "/Root/SM_CeilingA_6X36/SM_CeilingA_6X6"
+  },
+  "prim_54": {
+    "full_path": "/Root/SM_CeilingA_6X37/SM_CeilingA_6X6"
+  },
+  "prim_55": {
+    "full_path": "/Root/SM_CeilingA_6X38/SM_CeilingA_6X6"
+  },
+  "prim_56": {
+    "full_path": "/Root/SM_CeilingA_6X39/SM_CeilingA_6X6"
+  },
+  "prim_57": {
+    "full_path": "/Root/SM_CeilingA_6X40/SM_CeilingA_6X6"
+  },
+  "prim_58": {
+    "full_path": "/Root/SM_CeilingA_6X41/SM_CeilingA_6X6"
+  },
+  "prim_59": {
+    "full_path": "/Root/SM_CeilingA_6X42/SM_CeilingA_6X6"
+  },
+  "prim_60": {
+    "full_path": "/Root/SM_CeilingA_6X43/SM_CeilingA_6X6"
+  },
+  "prim_61": {
+    "full_path": "/Root/SM_CeilingA_6X58/SM_CeilingA_6X6"
+  },
+  "prim_62": {
+    "full_path": "/Root/SM_CeilingA_6X75/SM_CeilingA_6X6"
+  },
+  "prim_63": {
+    "full_path": "/Root/SM_CeilingA_6X76/SM_CeilingA_6X6"
+  },
+  "prim_64": {
+    "full_path": "/Root/SM_CeilingA_6X77/SM_CeilingA_6X6"
+  },
+  "prim_65": {
+    "full_path": "/Root/SM_CeilingA_6X84/SM_CeilingA_6X6"
+  },
+  "prim_66": {
+    "full_path": "/Root/SM_FireExtinguisher_18/SM_FireExtinguisher_02"
+  },
+  "prim_67": {
+    "full_path": "/Root/SM_FireExtinguisher_24/SM_FireExtinguisher_02"
+  },
+  "prim_68": {
+    "full_path": "/Root/SM_FloorDecal_Keepclear6_446/SM_FloorDecal_Keepclear"
+  },
+  "prim_69": {
+    "full_path": "/Root/SM_FloorDecal_RecRed1X15/SM_FloorDecal_RecRed1X1"
+  },
+  "prim_70": {
+    "full_path": "/Root/SM_FloorDecal_RecRed1X16/SM_FloorDecal_RecRed1X1"
+  },
+  "prim_71": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m74/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_72": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m75/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_73": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m76/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_74": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m77/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_75": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m78/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_76": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m79/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_77": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m80/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_78": {
+    "full_path": "/Root/SM_FloorDecal_StripeFull_4m81/SM_FloorDecal_StripeFull_4m"
+  },
+  "prim_79": {
+    "full_path": "/Root/SM_FuseBox_24/SM_FuseBox_01"
+  },
+  "prim_80": {
+    "full_path": "/Root/SM_FuseBox_25/SM_FuseBox_04"
+  },
+  "prim_81": {
+    "full_path": "/Root/SM_LampCeilingA_23/SM_LampCeilingA_04/Section0"
+  },
+  "prim_82": {
+    "full_path": "/Root/SM_LampCeilingA_23/SM_LampCeilingA_04/Section1"
+  },
+  "prim_83": {
+    "full_path": "/Root/SM_LampCeilingA_24/SM_LampCeilingA_04/Section0"
+  },
+  "prim_84": {
+    "full_path": "/Root/SM_LampCeilingA_24/SM_LampCeilingA_04/Section1"
+  },
+  "prim_85": {
+    "full_path": "/Root/SM_LampCeilingA_33/SM_LampCeilingA_04/Section0"
+  },
+  "prim_86": {
+    "full_path": "/Root/SM_LampCeilingA_33/SM_LampCeilingA_04/Section1"
+  },
+  "prim_87": {
+    "full_path": "/Root/SM_LampCeilingA_35/SM_LampCeilingA_04/Section0"
+  },
+  "prim_88": {
+    "full_path": "/Root/SM_LampCeilingA_35/SM_LampCeilingA_04/Section1"
+  },
+  "prim_89": {
+    "full_path": "/Root/SM_LampCeilingA_36/SM_LampCeilingA_04/Section0"
+  },
+  "prim_90": {
+    "full_path": "/Root/SM_LampCeilingA_36/SM_LampCeilingA_04/Section1"
+  },
+  "prim_91": {
+    "full_path": "/Root/SM_LampCeilingA_37/SM_LampCeilingA_04/Section0"
+  },
+  "prim_92": {
+    "full_path": "/Root/SM_LampCeilingA_37/SM_LampCeilingA_04/Section1"
+  },
+  "prim_93": {
+    "full_path": "/Root/SM_LampCeilingA_38/SM_LampCeilingA_04/Section0"
+  },
+  "prim_94": {
+    "full_path": "/Root/SM_LampCeilingA_38/SM_LampCeilingA_04/Section1"
+  },
+  "prim_95": {
+    "full_path": "/Root/SM_LampCeilingA_43/SM_LampCeilingA_04/Section0"
+  },
+  "prim_96": {
+    "full_path": "/Root/SM_LampCeilingA_43/SM_LampCeilingA_04/Section1"
+  },
+  "prim_97": {
+    "full_path": "/Root/SM_LampCeilingA_44/SM_LampCeilingA_04/Section0"
+  },
+  "prim_98": {
+    "full_path": "/Root/SM_LampCeilingA_44/SM_LampCeilingA_04/Section1"
+  },
+  "prim_99": {
+    "full_path": "/Root/SM_PaletteA_11/SM_PaletteA_01"
+  },
+  "prim_100": {
+    "full_path": "/Root/SM_PaletteA_12/SM_PaletteA_01"
+  },
+  "prim_101": {
+    "full_path": "/Root/SM_PaletteA_151/SM_PaletteA_01"
+  },
+  "prim_102": {
+    "full_path": "/Root/SM_PaletteA_161/SM_PaletteA_01"
+  },
+  "prim_103": {
+    "full_path": "/Root/SM_PaletteA_270/SM_PaletteA_01"
+  },
+  "prim_104": {
+    "full_path": "/Root/SM_PaletteA_307/SM_PaletteA_01"
+  },
+  "prim_105": {
+    "full_path": "/Root/SM_PaletteA_308/SM_PaletteA_01"
+  },
+  "prim_106": {
+    "full_path": "/Root/SM_PaletteA_309/SM_PaletteA_01"
+  },
+  "prim_107": {
+    "full_path": "/Root/SM_PaletteA_314/SM_PaletteA_01"
+  },
+  "prim_108": {
+    "full_path": "/Root/SM_PaletteA_315/SM_PaletteA_01"
+  },
+  "prim_109": {
+    "full_path": "/Root/SM_PaletteA_316/SM_PaletteA_02"
+  },
+  "prim_110": {
+    "full_path": "/Root/SM_PaletteA_318/SM_PaletteA_01"
+  },
+  "prim_111": {
+    "full_path": "/Root/SM_PaletteA_319/SM_PaletteA_01"
+  },
+  "prim_112": {
+    "full_path": "/Root/SM_PaletteA_357/SM_PaletteA_01"
+  },
+  "prim_113": {
+    "full_path": "/Root/SM_PaletteA_358/SM_PaletteA_01"
+  },
+  "prim_114": {
+    "full_path": "/Root/SM_PaletteA_359/SM_PaletteA_01"
+  },
+  "prim_115": {
+    "full_path": "/Root/SM_PaletteA_465/SM_PaletteA_01"
+  },
+  "prim_116": {
+    "full_path": "/Root/SM_PaletteA_466/SM_PaletteA_01"
+  },
+  "prim_117": {
+    "full_path": "/Root/SM_PaletteA_470/SM_PaletteA_01"
+  },
+  "prim_118": {
+    "full_path": "/Root/SM_PaletteA_5/SM_PaletteA_01"
+  },
+  "prim_119": {
+    "full_path": "/Root/SM_PaletteA_6/SM_PaletteA_01"
+  },
+  "prim_120": {
+    "full_path": "/Root/SM_PaletteA_76/SM_PaletteA_01"
+  },
+  "prim_121": {
+    "full_path": "/Root/SM_PaletteA_77/SM_PaletteA_01"
+  },
+  "prim_122": {
+    "full_path": "/Root/SM_PaletteA_78/SM_PaletteA_01"
+  },
+  "prim_123": {
+    "full_path": "/Root/SM_PillarA_9M4/SM_PillarA_9M"
+  },
+  "prim_124": {
+    "full_path": "/Root/SM_PillarPartA_9M10_1473/SM_PillarPartA_9M/Section0"
+  },
+  "prim_125": {
+    "full_path": "/Root/SM_PillarPartA_9M10_1473/SM_PillarPartA_9M/Section1"
+  },
+  "prim_126": {
+    "full_path": "/Root/SM_PillarPartA_9M11_1481/SM_PillarPartA_9M/Section0"
+  },
+  "prim_127": {
+    "full_path": "/Root/SM_PillarPartA_9M11_1481/SM_PillarPartA_9M/Section1"
+  },
+  "prim_128": {
+    "full_path": "/Root/SM_PillarPartA_9M12_1482/SM_PillarPartA_9M/Section0"
+  },
+  "prim_129": {
+    "full_path": "/Root/SM_PillarPartA_9M12_1482/SM_PillarPartA_9M/Section1"
+  },
+  "prim_130": {
+    "full_path": "/Root/SM_PillarPartA_9M3_1445/SM_PillarPartA_9M/Section0"
+  },
+  "prim_131": {
+    "full_path": "/Root/SM_PillarPartA_9M3_1445/SM_PillarPartA_9M/Section1"
+  },
+  "prim_132": {
+    "full_path": "/Root/SM_PillarPartA_9M4_1446/SM_PillarPartA_9M/Section0"
+  },
+  "prim_133": {
+    "full_path": "/Root/SM_PillarPartA_9M4_1446/SM_PillarPartA_9M/Section1"
+  },
+  "prim_134": {
+    "full_path": "/Root/SM_PillarPartA_9M5_1454/SM_PillarPartA_9M/Section0"
+  },
+  "prim_135": {
+    "full_path": "/Root/SM_PillarPartA_9M5_1454/SM_PillarPartA_9M/Section1"
+  },
+  "prim_136": {
+    "full_path": "/Root/SM_PillarPartA_9M6_1455/SM_PillarPartA_9M/Section0"
+  },
+  "prim_137": {
+    "full_path": "/Root/SM_PillarPartA_9M6_1455/SM_PillarPartA_9M/Section1"
+  },
+  "prim_138": {
+    "full_path": "/Root/SM_PillarPartA_9M7_1463/SM_PillarPartA_9M/Section0"
+  },
+  "prim_139": {
+    "full_path": "/Root/SM_PillarPartA_9M7_1463/SM_PillarPartA_9M/Section1"
+  },
+  "prim_140": {
+    "full_path": "/Root/SM_PillarPartA_9M8_1464/SM_PillarPartA_9M/Section0"
+  },
+  "prim_141": {
+    "full_path": "/Root/SM_PillarPartA_9M8_1464/SM_PillarPartA_9M/Section1"
+  },
+  "prim_142": {
+    "full_path": "/Root/SM_PillarPartA_9M9_1472/SM_PillarPartA_9M/Section0"
+  },
+  "prim_143": {
+    "full_path": "/Root/SM_PillarPartA_9M9_1472/SM_PillarPartA_9M/Section1"
+  },
+  "prim_144": {
+    "full_path": "/Root/SM_PushcartA_02_22/SM_PushcartA_02"
+  },
+  "prim_145": {
+    "full_path": "/Root/SM_RackFrame_159/SM_RackFrame_03/Section0"
+  },
+  "prim_146": {
+    "full_path": "/Root/SM_RackFrame_159/SM_RackFrame_03/Section1"
+  },
+  "prim_147": {
+    "full_path": "/Root/SM_RackFrame_160/SM_RackFrame_03/Section0"
+  },
+  "prim_148": {
+    "full_path": "/Root/SM_RackFrame_160/SM_RackFrame_03/Section1"
+  },
+  "prim_149": {
+    "full_path": "/Root/SM_RackFrame_161/SM_RackFrame_03/Section0"
+  },
+  "prim_150": {
+    "full_path": "/Root/SM_RackFrame_161/SM_RackFrame_03/Section1"
+  },
+  "prim_151": {
+    "full_path": "/Root/SM_RackFrame_162/SM_RackFrame_03/Section0"
+  },
+  "prim_152": {
+    "full_path": "/Root/SM_RackFrame_162/SM_RackFrame_03/Section1"
+  },
+  "prim_153": {
+    "full_path": "/Root/SM_RackFrame_163/SM_RackFrame_03/Section0"
+  },
+  "prim_154": {
+    "full_path": "/Root/SM_RackFrame_163/SM_RackFrame_03/Section1"
+  },
+  "prim_155": {
+    "full_path": "/Root/SM_RackFrame_164/SM_RackFrame_03/Section0"
+  },
+  "prim_156": {
+    "full_path": "/Root/SM_RackFrame_164/SM_RackFrame_03/Section1"
+  },
+  "prim_157": {
+    "full_path": "/Root/SM_RackFrame_165/SM_RackFrame_03/Section0"
+  },
+  "prim_158": {
+    "full_path": "/Root/SM_RackFrame_165/SM_RackFrame_03/Section1"
+  },
+  "prim_159": {
+    "full_path": "/Root/SM_RackFrame_166/SM_RackFrame_03/Section0"
+  },
+  "prim_160": {
+    "full_path": "/Root/SM_RackFrame_166/SM_RackFrame_03/Section1"
+  },
+  "prim_161": {
+    "full_path": "/Root/SM_RackFrame_167/SM_RackFrame_03/Section0"
+  },
+  "prim_162": {
+    "full_path": "/Root/SM_RackFrame_167/SM_RackFrame_03/Section1"
+  },
+  "prim_163": {
+    "full_path": "/Root/SM_RackFrame_168/SM_RackFrame_03/Section0"
+  },
+  "prim_164": {
+    "full_path": "/Root/SM_RackFrame_168/SM_RackFrame_03/Section1"
+  },
+  "prim_165": {
+    "full_path": "/Root/SM_RackShelf_156/SM_RackShelf_01/Section0"
+  },
+  "prim_166": {
+    "full_path": "/Root/SM_RackShelf_156/SM_RackShelf_01/Section1"
+  },
+  "prim_167": {
+    "full_path": "/Root/SM_RackShelf_156/SM_RackShelf_01/Section2"
+  },
+  "prim_168": {
+    "full_path": "/Root/SM_RackShelf_157/SM_RackShelf_01/Section0"
+  },
+  "prim_169": {
+    "full_path": "/Root/SM_RackShelf_157/SM_RackShelf_01/Section1"
+  },
+  "prim_170": {
+    "full_path": "/Root/SM_RackShelf_157/SM_RackShelf_01/Section2"
+  },
+  "prim_171": {
+    "full_path": "/Root/SM_RackShelf_158/SM_RackShelf_01/Section0"
+  },
+  "prim_172": {
+    "full_path": "/Root/SM_RackShelf_158/SM_RackShelf_01/Section1"
+  },
+  "prim_173": {
+    "full_path": "/Root/SM_RackShelf_158/SM_RackShelf_01/Section2"
+  },
+  "prim_174": {
+    "full_path": "/Root/SM_RackShelf_159/SM_RackShelf_01/Section0"
+  },
+  "prim_175": {
+    "full_path": "/Root/SM_RackShelf_159/SM_RackShelf_01/Section1"
+  },
+  "prim_176": {
+    "full_path": "/Root/SM_RackShelf_159/SM_RackShelf_01/Section2"
+  },
+  "prim_177": {
+    "full_path": "/Root/SM_RackShelf_160/SM_RackShelf_01/Section0"
+  },
+  "prim_178": {
+    "full_path": "/Root/SM_RackShelf_160/SM_RackShelf_01/Section1"
+  },
+  "prim_179": {
+    "full_path": "/Root/SM_RackShelf_160/SM_RackShelf_01/Section2"
+  },
+  "prim_180": {
+    "full_path": "/Root/SM_RackShelf_161/SM_RackShelf_01/Section0"
+  },
+  "prim_181": {
+    "full_path": "/Root/SM_RackShelf_161/SM_RackShelf_01/Section1"
+  },
+  "prim_182": {
+    "full_path": "/Root/SM_RackShelf_161/SM_RackShelf_01/Section2"
+  },
+  "prim_183": {
+    "full_path": "/Root/SM_RackShelf_162/SM_RackShelf_01/Section0"
+  },
+  "prim_184": {
+    "full_path": "/Root/SM_RackShelf_162/SM_RackShelf_01/Section1"
+  },
+  "prim_185": {
+    "full_path": "/Root/SM_RackShelf_162/SM_RackShelf_01/Section2"
+  },
+  "prim_186": {
+    "full_path": "/Root/SM_RackShelf_163/SM_RackShelf_01/Section0"
+  },
+  "prim_187": {
+    "full_path": "/Root/SM_RackShelf_163/SM_RackShelf_01/Section1"
+  },
+  "prim_188": {
+    "full_path": "/Root/SM_RackShelf_163/SM_RackShelf_01/Section2"
+  },
+  "prim_189": {
+    "full_path": "/Root/SM_RackShelf_164/SM_RackShelf_01/Section0"
+  },
+  "prim_190": {
+    "full_path": "/Root/SM_RackShelf_164/SM_RackShelf_01/Section1"
+  },
+  "prim_191": {
+    "full_path": "/Root/SM_RackShelf_164/SM_RackShelf_01/Section2"
+  },
+  "prim_192": {
+    "full_path": "/Root/SM_RackShelf_165/SM_RackShelf_01/Section0"
+  },
+  "prim_193": {
+    "full_path": "/Root/SM_RackShelf_165/SM_RackShelf_01/Section1"
+  },
+  "prim_194": {
+    "full_path": "/Root/SM_RackShelf_165/SM_RackShelf_01/Section2"
+  },
+  "prim_195": {
+    "full_path": "/Root/SM_RackShelf_166/SM_RackShelf_01/Section0"
+  },
+  "prim_196": {
+    "full_path": "/Root/SM_RackShelf_166/SM_RackShelf_01/Section1"
+  },
+  "prim_197": {
+    "full_path": "/Root/SM_RackShelf_166/SM_RackShelf_01/Section2"
+  },
+  "prim_198": {
+    "full_path": "/Root/SM_RackShelf_167/SM_RackShelf_01/Section0"
+  },
+  "prim_199": {
+    "full_path": "/Root/SM_RackShelf_167/SM_RackShelf_01/Section1"
+  },
+  "prim_200": {
+    "full_path": "/Root/SM_RackShelf_167/SM_RackShelf_01/Section2"
+  },
+  "prim_201": {
+    "full_path": "/Root/SM_RackShelf_170/SM_RackShelf_01/Section0"
+  },
+  "prim_202": {
+    "full_path": "/Root/SM_RackShelf_170/SM_RackShelf_01/Section1"
+  },
+  "prim_203": {
+    "full_path": "/Root/SM_RackShelf_170/SM_RackShelf_01/Section2"
+  },
+  "prim_204": {
+    "full_path": "/Root/SM_Rackshield_43/SM_Rackshield_02"
+  },
+  "prim_205": {
+    "full_path": "/Root/SM_Rackshield_50/SM_Rackshield_02"
+  },
+  "prim_206": {
+    "full_path": "/Root/SM_SignA_27/SM_SignA_02"
+  },
+  "prim_207": {
+    "full_path": "/Root/SM_SignB_23/SM_SignB_11"
+  },
+  "prim_208": {
+    "full_path": "/Root/SM_SignB_3/SM_SignB_02"
+  },
+  "prim_209": {
+    "full_path": "/Root/SM_SignCVer_139/SM_SignCVer_09"
+  },
+  "prim_210": {
+    "full_path": "/Root/SM_SignCVer_140/SM_SignCVer_10"
+  },
+  "prim_211": {
+    "full_path": "/Root/SM_SignCVer_141/SM_SignCVer_11"
+  },
+  "prim_212": {
+    "full_path": "/Root/SM_SignCVer_142/SM_SignCVer_12"
+  },
+  "prim_213": {
+    "full_path": "/Root/SM_SignCVer_143/SM_SignCVer_13"
+  },
+  "prim_214": {
+    "full_path": "/Root/SM_SignCVer_144/SM_SignCVer_01"
+  },
+  "prim_215": {
+    "full_path": "/Root/SM_SignCVer_145/SM_SignCVer_02"
+  },
+  "prim_216": {
+    "full_path": "/Root/SM_SignCVer_146/SM_SignCVer_03"
+  },
+  "prim_217": {
+    "full_path": "/Root/SM_SignCVer_150/SM_SignCVer_04"
+  },
+  "prim_218": {
+    "full_path": "/Root/SM_SignCVer_151/SM_SignCVer_05"
+  },
+  "prim_219": {
+    "full_path": "/Root/SM_SignCVer_153/SM_SignCVer_06"
+  },
+  "prim_220": {
+    "full_path": "/Root/SM_SignCVer_185/SM_SignCVer_07"
+  },
+  "prim_221": {
+    "full_path": "/Root/SM_SignCVer_186/SM_SignCVer_08"
+  },
+  "prim_222": {
+    "full_path": "/Root/SM_SignCVer_187/SM_SignCVer_07"
+  },
+  "prim_223": {
+    "full_path": "/Root/SM_SignCVer_188/SM_SignCVer_09"
+  },
+  "prim_224": {
+    "full_path": "/Root/SM_SignCVer_189/SM_SignCVer_09"
+  },
+  "prim_225": {
+    "full_path": "/Root/SM_SignCVer_190/SM_SignCVer_10"
+  },
+  "prim_226": {
+    "full_path": "/Root/SM_SignCVer_191/SM_SignCVer_11"
+  },
+  "prim_227": {
+    "full_path": "/Root/SM_SignCVer_192/SM_SignCVer_12"
+  },
+  "prim_228": {
+    "full_path": "/Root/SM_SignCVer_193/SM_SignCVer_13"
+  },
+  "prim_229": {
+    "full_path": "/Root/SM_SignCVer_194/SM_SignCVer_01"
+  },
+  "prim_230": {
+    "full_path": "/Root/SM_SignCVer_195/SM_SignCVer_02"
+  },
+  "prim_231": {
+    "full_path": "/Root/SM_SignCVer_196/SM_SignCVer_03"
+  },
+  "prim_232": {
+    "full_path": "/Root/SM_SignCVer_197/SM_SignCVer_04"
+  },
+  "prim_233": {
+    "full_path": "/Root/SM_SignCVer_198/SM_SignCVer_05"
+  },
+  "prim_234": {
+    "full_path": "/Root/SM_SignCVer_199/SM_SignCVer_06"
+  },
+  "prim_235": {
+    "full_path": "/Root/SM_SignCVer_200/SM_SignCVer_07"
+  },
+  "prim_236": {
+    "full_path": "/Root/SM_SignCVer_201/SM_SignCVer_08"
+  },
+  "prim_237": {
+    "full_path": "/Root/SM_SignCVer_203/SM_SignCVer_09"
+  },
+  "prim_238": {
+    "full_path": "/Root/SM_WallA_3M13/SM_WallB_6M"
+  },
+  "prim_239": {
+    "full_path": "/Root/SM_WallA_3M14/SM_WallB_6M"
+  },
+  "prim_240": {
+    "full_path": "/Root/SM_WallA_3M16/SM_WallB_6M"
+  },
+  "prim_241": {
+    "full_path": "/Root/SM_WallA_3M18_460/SM_WallB_6M"
+  },
+  "prim_242": {
+    "full_path": "/Root/SM_WallA_3M19/SM_WallB_6M"
+  },
+  "prim_243": {
+    "full_path": "/Root/SM_WallA_3M20/SM_WallB_6M"
+  },
+  "prim_244": {
+    "full_path": "/Root/SM_WallA_3M21_1371/SM_WallB_6M"
+  },
+  "prim_245": {
+    "full_path": "/Root/SM_WallA_3M26/SM_WallB_6M"
+  },
+  "prim_246": {
+    "full_path": "/Root/SM_WallA_3M27/SM_WallB_6M"
+  },
+  "prim_247": {
+    "full_path": "/Root/SM_WallA_3M28/SM_WallB_6M"
+  },
+  "prim_248": {
+    "full_path": "/Root/SM_WallA_3M36/SM_WallB_6M"
+  },
+  "prim_249": {
+    "full_path": "/Root/SM_WallA_3M37/SM_WallB_6M"
+  },
+  "prim_250": {
+    "full_path": "/Root/SM_WallA_3M38/SM_WallB_6M"
+  },
+  "prim_251": {
+    "full_path": "/Root/SM_WallA_3M39/SM_WallB_6M"
+  },
+  "prim_252": {
+    "full_path": "/Root/SM_WallA_3M40/SM_WallB_6M"
+  },
+  "prim_253": {
+    "full_path": "/Root/SM_WallA_3M41/SM_WallB_6M"
+  },
+  "prim_254": {
+    "full_path": "/Root/SM_WallA_3M43/SM_WallA_6M/Section0"
+  },
+  "prim_255": {
+    "full_path": "/Root/SM_WallA_3M43/SM_WallA_6M/Section1"
+  },
+  "prim_256": {
+    "full_path": "/Root/SM_WallA_3M44/SM_WallA_6M/Section0"
+  },
+  "prim_257": {
+    "full_path": "/Root/SM_WallA_3M44/SM_WallA_6M/Section1"
+  },
+  "prim_258": {
+    "full_path": "/Root/SM_WallA_3M8/SM_WallB_6M"
+  },
+  "prim_259": {
+    "full_path": "/Root/SM_WallA_6M10/SM_WallA_6M/Section0"
+  },
+  "prim_260": {
+    "full_path": "/Root/SM_WallA_6M10/SM_WallA_6M/Section1"
+  },
+  "prim_261": {
+    "full_path": "/Root/SM_WallA_6M11/SM_WallA_6M/Section0"
+  },
+  "prim_262": {
+    "full_path": "/Root/SM_WallA_6M11/SM_WallA_6M/Section1"
+  },
+  "prim_263": {
+    "full_path": "/Root/SM_WallA_6M15/SM_WallA_6M/Section0"
+  },
+  "prim_264": {
+    "full_path": "/Root/SM_WallA_6M15/SM_WallA_6M/Section1"
+  },
+  "prim_265": {
+    "full_path": "/Root/SM_WallA_6M16/SM_WallA_6M/Section0"
+  },
+  "prim_266": {
+    "full_path": "/Root/SM_WallA_6M16/SM_WallA_6M/Section1"
+  },
+  "prim_267": {
+    "full_path": "/Root/SM_WallA_6M17/SM_WallA_6M/Section0"
+  },
+  "prim_268": {
+    "full_path": "/Root/SM_WallA_6M17/SM_WallA_6M/Section1"
+  },
+  "prim_269": {
+    "full_path": "/Root/SM_WallA_6M18/SM_WallA_6M/Section0"
+  },
+  "prim_270": {
+    "full_path": "/Root/SM_WallA_6M18/SM_WallA_6M/Section1"
+  },
+  "prim_271": {
+    "full_path": "/Root/SM_WallA_6M4/SM_WallA_6M/Section0"
+  },
+  "prim_272": {
+    "full_path": "/Root/SM_WallA_6M4/SM_WallA_6M/Section1"
+  },
+  "prim_273": {
+    "full_path": "/Root/SM_WallA_6M5/SM_WallA_6M/Section0"
+  },
+  "prim_274": {
+    "full_path": "/Root/SM_WallA_6M5/SM_WallA_6M/Section1"
+  },
+  "prim_275": {
+    "full_path": "/Root/SM_WallA_6M6/SM_WallA_6M/Section0"
+  },
+  "prim_276": {
+    "full_path": "/Root/SM_WallA_6M6/SM_WallA_6M/Section1"
+  },
+  "prim_277": {
+    "full_path": "/Root/SM_WallA_6M7/SM_WallA_6M/Section0"
+  },
+  "prim_278": {
+    "full_path": "/Root/SM_WallA_6M7/SM_WallA_6M/Section1"
+  },
+  "prim_279": {
+    "full_path": "/Root/SM_WallA_InnerCorner10/SM_WallA_InnerCorner/Section0"
+  },
+  "prim_280": {
+    "full_path": "/Root/SM_WallA_InnerCorner10/SM_WallA_InnerCorner/Section1"
+  },
+  "prim_281": {
+    "full_path": "/Root/SM_WallA_InnerCorner11/SM_WallA_InnerCorner/Section0"
+  },
+  "prim_282": {
+    "full_path": "/Root/SM_WallA_InnerCorner11/SM_WallA_InnerCorner/Section1"
+  },
+  "prim_283": {
+    "full_path": "/Root/SM_WallA_InnerCorner12/SM_WallA_InnerCorner/Section0"
+  },
+  "prim_284": {
+    "full_path": "/Root/SM_WallA_InnerCorner12/SM_WallA_InnerCorner/Section1"
+  },
+  "prim_285": {
+    "full_path": "/Root/SM_WallA_InnerCorner13/SM_WallB_InnerCorner"
+  },
+  "prim_286": {
+    "full_path": "/Root/SM_WallA_InnerCorner14/SM_WallB_InnerCorner"
+  },
+  "prim_287": {
+    "full_path": "/Root/SM_WallA_InnerCorner16/SM_WallB_InnerCorner"
+  },
+  "prim_288": {
+    "full_path": "/Root/SM_WallA_InnerCorner18/SM_WallB_6M"
+  },
+  "prim_289": {
+    "full_path": "/Root/SM_WallA_InnerCorner24/SM_WallB_6M"
+  },
+  "prim_290": {
+    "full_path": "/Root/SM_WallA_InnerCorner25/SM_WallB_6M"
+  },
+  "prim_291": {
+    "full_path": "/Root/SM_WallA_InnerCorner26/SM_WallB_6M"
+  },
+  "prim_292": {
+    "full_path": "/Root/SM_WallA_InnerCorner27/SM_WallB_InnerCorner"
+  },
+  "prim_293": {
+    "full_path": "/Root/SM_WallA_InnerCorner28/SM_WallB_InnerCorner"
+  },
+  "prim_294": {
+    "full_path": "/Root/SM_WallA_InnerCorner29/SM_WallB_InnerCorner"
+  },
+  "prim_295": {
+    "full_path": "/Root/SM_WallA_InnerCorner30/SM_WallB_6M"
+  },
+  "prim_296": {
+    "full_path": "/Root/SM_WallA_InnerCorner32/SM_WallB_6M"
+  },
+  "prim_297": {
+    "full_path": "/Root/SM_WallA_InnerCorner33/SM_WallB_6M"
+  },
+  "prim_298": {
+    "full_path": "/Root/SM_WallA_InnerCorner34/SM_WallB_6M"
+  },
+  "prim_299": {
+    "full_path": "/Root/SM_WallA_InnerCorner35/SM_WallB_InnerCorner"
+  },
+  "prim_300": {
+    "full_path": "/Root/SM_WallA_InnerCorner9_88/SM_WallA_InnerCorner/Section0"
+  },
+  "prim_301": {
+    "full_path": "/Root/SM_WallA_InnerCorner9_88/SM_WallA_InnerCorner/Section1"
+  },
+  "prim_302": {
+    "full_path": "/Root/SM_WallWire_63/SM_WallWire_03"
+  },
+  "prim_303": {
+    "full_path": "/Root/SM_WallWire_64/SM_WallWire_02"
+  },
+  "prim_304": {
+    "full_path": "/Root/SM_WallWire_65/SM_WallWire_07"
+  },
+  "prim_305": {
+    "full_path": "/Root/SM_WallWire_68/SM_WallWire_08"
+  },
+  "prim_306": {
+    "full_path": "/Root/SM_WallWire_69/SM_WallWire_08"
+  },
+  "prim_307": {
+    "full_path": "/Root/SM_WallWire_70/SM_WallWire_06"
+  },
+  "prim_308": {
+    "full_path": "/Root/SM_WallWire_71/SM_WallWire_08"
+  },
+  "prim_309": {
+    "full_path": "/Root/SM_WallWire_73/SM_WallWire_10"
+  },
+  "prim_310": {
+    "full_path": "/Root/SM_WallWire_74/SM_WallWire_10"
+  },
+  "prim_311": {
+    "full_path": "/Root/SM_floor27/SM_floor02"
+  },
+  "prim_312": {
+    "full_path": "/Root/SM_floor29/SM_floor02"
+  },
+  "prim_313": {
+    "full_path": "/Root/SM_floor32/SM_floor02"
+  },
+  "prim_314": {
+    "full_path": "/Root/SM_floor33/SM_floor02"
+  },
+  "prim_315": {
+    "full_path": "/Root/SM_floor34/SM_floor02"
+  },
+  "prim_316": {
+    "full_path": "/Root/SM_floor35/SM_floor02"
+  },
+  "prim_317": {
+    "full_path": "/Root/SM_floor36/SM_floor02"
+  },
+  "prim_318": {
+    "full_path": "/Root/SM_floor37/SM_floor02"
+  },
+  "prim_319": {
+    "full_path": "/Root/SM_floor39/SM_floor02"
+  },
+  "prim_320": {
+    "full_path": "/Root/SM_floor44/SM_floor02"
+  },
+  "prim_321": {
+    "full_path": "/Root/SM_floor47/SM_floor02"
+  },
+  "prim_322": {
+    "full_path": "/Root/SM_floor49/SM_floor02"
+  },
+  "prim_323": {
+    "full_path": "/Root/SM_floor51/SM_floor02"
+  },
+  "prim_324": {
+    "full_path": "/Root/SM_floor53/SM_floor02"
+  },
+  "prim_325": {
+    "full_path": "/Root/SM_floor54/SM_floor02"
+  },
+  "prim_326": {
+    "full_path": "/Root/SM_floor55/SM_floor02"
+  },
+  "prim_327": {
+    "full_path": "/Root/SM_floor56/SM_floor02"
+  },
+  "prim_328": {
+    "full_path": "/Root/SM_floor57/SM_floor02"
+  },
+  "prim_329": {
+    "full_path": "/Root/SM_floor58/SM_floor02"
+  },
+  "prim_330": {
+    "full_path": "/Root/SM_floor59/SM_floor02"
+  },
+  "prim_331": {
+    "full_path": "/Root/SM_floor60/SM_floor02"
+  },
+  "prim_332": {
+    "full_path": "/Root/SM_floor62/SM_floor02"
+  },
+  "prim_333": {
+    "full_path": "/Root/SM_floor63/SM_floor02"
+  },
+  "prim_334": {
+    "full_path": "/Root/S_AisleSign12/S_AisleSign"
+  },
+  "prim_335": {
+    "full_path": "/Root/S_AisleSign_47/S_AisleSign"
+  },
+  "prim_336": {
+    "full_path": "/Root/S_Barcode886/S_Barcode"
+  },
+  "prim_337": {
+    "full_path": "/Root/SM_PaletteA_360/SM_PaletteA_01"
+  },
+  "prim_338": {
+    "full_path": "/Root/SM_WallA_6M12/SM_WallA_6M/Section0"
+  },
+  "prim_339": {
+    "full_path": "/Root/SM_WallA_6M12/SM_WallA_6M/Section1"
+  },
+  "prim_340": {
+    "full_path": "/Root/SM_floor61/SM_floor02"
+  },
+  "prim_341": {
+    "full_path": "/Root/SM_WallA_3M15/SM_WallB_6M"
+  },
+  "prim_342": {
+    "full_path": "/Root/SM_WallA_InnerCorner15/SM_WallB_InnerCorner"
+  },
+  "prim_343": {
+    "full_path": "/Root/SM_WallA_3M43_01/SM_WallA_6M/Section0"
+  },
+  "prim_344": {
+    "full_path": "/Root/SM_WallA_3M43_01/SM_WallA_6M/Section1"
+  },
+  "prim_345": {
+    "full_path": "/Root/SM_WallA_3M13_01/SM_WallB_6M"
+  },
+  "prim_346": {
+    "full_path": "/Root/SM_WallA_3M14_01/SM_WallB_6M"
+  },
+  "prim_347": {
+    "full_path": "/Root/SM_PillarA_9M4_01/SM_PillarA_9M"
+  },
+  "prim_348": {
+    "full_path": "/Root/SM_PillarA_9M4_02/SM_PillarA_9M"
+  },
+  "prim_349": {
+    "full_path": "/Root/SM_PillarA_9M4_03/SM_PillarA_9M"
+  },
+  "prim_350": {
+    "full_path": "/Root/SM_PillarA_9M4_04/SM_PillarA_9M"
+  },
+  "prim_351": {
+    "full_path": "/Root/SM_CardBoxA_02/SM_CardBoxA_02"
+  },
+  "prim_352": {
+    "full_path": "/Root/GroundPlane/CollisionMesh"
+  },
+  "prim_353": {
+    "full_path": "/Root/SM_LampCeilingA_45/SM_LampCeilingA_04/Section0"
+  },
+  "prim_354": {
+    "full_path": "/Root/SM_LampCeilingA_45/SM_LampCeilingA_04/Section1"
+  },
+  "prim_355": {
+    "full_path": "/Root/SM_LampCeilingA_39/SM_LampCeilingA_04/Section0"
+  },
+  "prim_356": {
+    "full_path": "/Root/SM_LampCeilingA_39/SM_LampCeilingA_04/Section1"
+  },
+  "prim_357": {
+    "full_path": "/Root/SM_LampCeilingA_40/SM_LampCeilingA_04/Section0"
+  },
+  "prim_358": {
+    "full_path": "/Root/SM_LampCeilingA_40/SM_LampCeilingA_04/Section1"
+  },
+  "prim_359": {
+    "full_path": "/Root/SM_LampCeilingA_25/SM_LampCeilingA_04/Section0"
+  },
+  "prim_360": {
+    "full_path": "/Root/SM_LampCeilingA_25/SM_LampCeilingA_04/Section1"
+  },
+  "prim_361": {
+    "full_path": "/Root/SM_LampCeilingA_41/SM_LampCeilingA_04/Section0"
+  },
+  "prim_362": {
+    "full_path": "/Root/SM_LampCeilingA_41/SM_LampCeilingA_04/Section1"
+  },
+  "prim_363": {
+    "full_path": "/Root/SM_LampCeilingA_42/SM_LampCeilingA_04/Section0"
+  },
+  "prim_364": {
+    "full_path": "/Root/SM_LampCeilingA_42/SM_LampCeilingA_04/Section1"
+  },
+  "prim_365": {
+    "full_path": "/Root/SM_LampCeilingA_46/SM_LampCeilingA_04/Section0"
+  },
+  "prim_366": {
+    "full_path": "/Root/SM_LampCeilingA_46/SM_LampCeilingA_04/Section1"
+  },
+  "prim_367": {
+    "full_path": "/NavMesh/Obstacle"
+  },
+  "prim_368": {
+    "full_path": "/NavMesh/Obstacle_01"
+  },
+  "prim_369": {
+    "full_path": "/NavMesh/Obstacle_02"
+  },
+  "prim_370": {
+    "full_path": "/NavMesh/Obstacle_03"
+  },
+  "prim_371": {
+    "full_path": "/NavMesh/Obstacle_04"
+  }
+}

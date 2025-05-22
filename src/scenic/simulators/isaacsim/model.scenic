@@ -273,20 +273,33 @@ class GroundPlane(IsaacSimObject):
 # ---------- body ----------
 if globalParameters.environmentUSDPath:
 
-    scene = trimesh.load(localPath(environmentMeshPath))
-
     with open(environmentInfoPath, "r") as inFile:
+
+        scene = trimesh.load(localPath(environmentMeshPath))
+
         meshData = json.load(inFile)
 
         for node_name in scene.graph.nodes_geometry:
-            if node_name in meshData:
-                mesh = scene.geometry[node_name]
+            mesh = scene.geometry[node_name]
+            color = [0, 0, 1]
 
-                if isPlanar(mesh): 
-                    mesh = planeToMesh(mesh)
+            world_transform = scene.graph.get(node_name, "World")[0]
+            scale, shear, angles, tr, persp = decompose_matrix(world_transform)
 
-                trans = np.array(meshData[node_name]) # ['position']) 
-                #quat = np.array(meshData[node_name]['orientation'])
-                #orientation = Orientation.fromQuaternion(quat)
-                newObj = new IsaacSimPreexisting at trans, with shape MeshShape(repairMesh(mesh.apply_scale(.01))), with name node_name
-                _addPreexistingObj(newObj)
+            local_center = mesh.bounding_box.centroid
+            pitch, roll, yaw = angles
+            local_center_homogeneous = np.append(local_center, 1.0)
+            world_center = np.dot(world_transform, local_center_homogeneous)[:3]
+            path = meshData[node_name]['full_path']
+
+            if isPlanar(mesh): 
+                color = [0, 1, 0]
+                mesh = planeToMesh(mesh)
+
+            newObj = new IsaacSimPreexisting at world_center, 
+                        with shape MeshShape(repairMesh(mesh.apply_scale(.01))), # scale by 1/100
+                        with name path,
+                        with color color,
+                        facing (yaw, pitch, roll)
+
+            _addPreexistingObj(newObj)

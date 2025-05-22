@@ -7,11 +7,10 @@ import random
 param numToys = 0
 param duration = 10
 
-
 class Floor(GroundPlane):
     width: 5
     length: 5
-#    position: (0,0,-0.005)
+    position: (0,0,-0.005)
     color: [0.785, 0.785, 0.785]
 
 class Wall(IsaacSimObject):
@@ -19,6 +18,7 @@ class Wall(IsaacSimObject):
     length: 0.04
     height: 0.5
     physics: False
+    allowCollisions: True
     color: [0.627, 0.627, 0.627]
 
 class DiningTable(IsaacSimObject):

@@ -47,7 +47,7 @@ class IsaacSimSimulation(Simulation):
         action_registry = omni.kit.actions.core.get_action_registry()
         action = action_registry.get_action("omni.kit.viewport.menubar.lighting", "set_lighting_mode_camera")
         if self.environmentUSDPath:
-            stage_utils.add_reference_to_stage(self.environmentUSDPath, f"/World/environment") 
+            stage_utils.add_reference_to_stage(path.abspath(self.environmentUSDPath), f"/World/environment") 
         action.execute()
         self.world.play()
 
