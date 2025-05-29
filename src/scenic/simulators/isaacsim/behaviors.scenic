@@ -14,6 +14,18 @@ behavior KeepMoving():
         else:
             take setMoveWheeled(.2, 0)
 
+# for the Franka Robot (Manipulator)
+behavior PickAndPlace(target_object, goal_position):
+
+    while True:
+        take setMovePickPlace(target_object, goal_position)
+
+# for the Ridgeback
+behavior DriveStraight():
+
+    while True:
+        take setMoveWheeled(2, 0)
+
 # for the create 3 custom robot
 behavior KeepMovingCustom():
 

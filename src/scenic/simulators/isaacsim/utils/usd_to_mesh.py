@@ -61,13 +61,15 @@ def remove_ground_plane(file_path, output_path):
 # Repair the mesh so that it is compatible as a Scenic Mesh
 def fix_mesh(model_path):
     mesh = trimesh.load(model_path)
-    
+    print(mesh) 
     # if it is a scene, we need to combine individual geometry
     if isinstance(mesh, trimesh.Scene):
+        print("HELLO!, this is a scene")
         mesh = mesh.to_geometry()
 
     # repair the mesh 
     mesh = repairMesh(mesh)
+    #print(mesh.is_volume)
     mesh.export(model_path)
 
 
@@ -150,7 +152,6 @@ def get_mesh_info(usd_path, output_path):
     with open(out_file, 'w') as f:
         json.dump(transforms, f, indent=2)
 
-
 def asset_convert(args):
     supported_file_formats = ["usd"]
     for folder in args.folders:
@@ -180,14 +181,14 @@ def asset_convert(args):
                     remove_ground_plane(input_model_path, usd_without_ground)
                     input_model_path = usd_without_ground
 
+                # this should be fixed - doesnt make sense since we point at a folder of usd files
                 # rename the child meshes before conversion 
                 if args.environment:
                     renamed_usd = os.path.join(tmpDir, f"{model}.usd") 
                     get_mesh_info(input_model_path, renamed_usd)
-                    input_model_path = renamed_usd 
+                    input_model_path = renamed_usd
 
-                converted_model_path = folder + "_converted/" + model_name + "_" + model_format + ".gltf"
-
+                converted_model_path = os.path.join(folder + "_converted", f"{model_name}_{model_format}.gltf")
                 if not os.path.exists(converted_model_path):
                     status = asyncio.get_event_loop().run_until_complete(
                         convert(input_model_path, converted_model_path, True)
@@ -195,8 +196,10 @@ def asset_convert(args):
                     if not status:
                         print(f"ERROR Status is {status}")
 
+                    # if its not an environment, we should just repair the mesh now
                     # fill gaps and voxelize for Scenic
-                    # fix_mesh(converted_model_path) 
+                    if not args.environment:
+                        fix_mesh(converted_model_path)
                     print(f"---Added {converted_model_path}")
 
 if __name__ == "__main__":

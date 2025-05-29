@@ -16,27 +16,34 @@ class IsaacSimSimulator(Simulator):
         super().__init__()
         self.client = SimulationApp({"headless": False})
         self.environmentUSDPath = environmentUSDPath
+        from isaacsim.core.api import World
+        timestep = 1.0/60.0 #if timestep is None else timestep
+        self.world = World(stage_units_in_meters=1.0, physics_dt=timestep, rendering_dt=timestep)
 
     def createSimulation(self, scene, **kwargs):
         return IsaacSimSimulation(
             scene,
             self.client,
+            self.world,
             self.environmentUSDPath,
             **kwargs
         )
+    
+    def destroy(self):
+        self.client.close()
 
 class IsaacSimSimulation(Simulation):
 
-    def __init__(self, scene, client, environmentUSDPath, *, timestep, **kwargs):
+    def __init__(self, scene, client, world, environmentUSDPath, *, timestep, **kwargs):
 
-        from isaacsim.core.api import World
+        #from isaacsim.core.api import World
         from isaacsim.core.utils.extensions import enable_extension
         enable_extension("omni.kit.asset_converter")
 
         self.client = client
         self.environmentUSDPath = environmentUSDPath
         timestep = 1.0/60.0 if timestep is None else timestep
-        self.world = World(stage_units_in_meters=1.0, physics_dt=timestep, rendering_dt=timestep)
+        self.world = world
         self.tmpMeshDir = tempfile.mkdtemp()
         super().__init__(scene, timestep=timestep, **kwargs)
 
@@ -90,6 +97,13 @@ class IsaacSimSimulation(Simulation):
         if obj.blueprint == 'Robot':
             self.world.reset()
 
+        # fix this
+        if obj.blueprint == "Franka":
+            self.world.reset()
+            obj.setup_post_load(self.world)
+        #     self.world.reset()
+        #     obj.setup_post_reset(self.world)
+
     def getProperties(self, obj, properties):
         from isaacsim.core.utils.rotations import quat_to_euler_angles
 
@@ -117,5 +131,7 @@ class IsaacSimSimulation(Simulation):
         )
         return values
     
-    # def destroy(self):
-    #   self.client.close()
+    def destroy(self):
+        self.world.stop()
+        self.world.clear()
+        self.world.reset()

@@ -6,8 +6,18 @@ class _WheeledRobot:
 class _HolonomicRobot:
     pass
 
+class _ManipulatorRobot:
+    pass
+
+class _QuadrupedRobot:
+    pass
+
 class _Robot:
     pass
+
+class ManipulatorRobotAction(Action):
+    def canBeTakenBy(self, agent):
+        return isinstance(agent, _ManipulatorRobot)
 
 class RobotAction(Action):
     def canBeTakenBy(self, agent):
@@ -43,6 +53,16 @@ class setMoveWheeled(WheeledRobotAction):
 
     def applyTo(self, obj, sim):
         obj.move(sim, self.throttle, self.steering)
+
+
+class setMovePickPlace(ManipulatorRobotAction):
+
+    def __init__(self, target_object, goal_position):
+        self.target_object = target_object
+        self.goal_position = goal_position
+
+    def applyTo(self, obj, sim):
+        obj.move(sim, self.target_object, self.goal_position)
 
 class setMoveHolonomic(HolonomicRobotAction):
 

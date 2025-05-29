@@ -11,7 +11,7 @@ from trimesh.transformations import decompose_matrix
 try:
     from scenic.simulators.isaacsim.simulator import IsaacSimSimulator    # for use in scenarios
     from scenic.simulators.isaacsim.actions import *
-    from scenic.simulators.isaacsim.actions import _Robot, _WheeledRobot, _HolonomicRobot
+    from scenic.simulators.isaacsim.actions import _Robot, _WheeledRobot, _HolonomicRobot, _ManipulatorRobot
     from scenic.simulators.isaacsim.utils.utils import scenicToIsaacSimOrientation, _addPreexistingObj, isPlanar, planeToMesh
 except ModuleNotFoundError:
     # for convenience when testing without the isaacsim package
@@ -140,6 +140,102 @@ class IsaacSimRobot(IsaacSimObject, _Robot):
             position=self.position,
             orientation=scenicToIsaacSimOrientation(self.orientation)
         )
+
+class Franka(IsaacSimRobot, _ManipulatorRobot):
+
+    blueprint: "Franka"
+    shape: MeshShape(
+            trimesh.load(localPath("../../../../assets/meshes_converted/franka_alt_fingers_flattened_usd.gltf")).to_geometry(), 
+            initial_rotation=(0,90 deg,0))
+
+    def move(self, sim, target_object, goal_position):
+        current_joint_positions = self._franka.get_joint_positions()
+        actions = self._controller.forward(
+            picking_position=sim.world.scene.get_object(target_object.name).get_local_pose()[0],
+            placing_position=goal_position,
+            current_joint_positions=current_joint_positions,
+            end_effector_offset=np.array([0, 0.005, 0])
+        )
+        self._franka.apply_action(actions)
+
+    def create(self):
+        from isaacsim.robot.manipulators import SingleManipulator
+        from isaacsim.robot.manipulators.grippers import ParallelGripper
+        from isaacsim.storage.native import get_assets_root_path
+        from isaacsim.core.utils.stage import add_reference_to_stage
+
+        assets_root_path = get_assets_root_path()
+        asset_path = assets_root_path + "/Isaac/Robots/Franka/franka_alt_fingers.usd"
+        prim_path = f"/World/{self.name}"
+
+        add_reference_to_stage(usd_path=asset_path, prim_path=prim_path)
+
+        gripper = ParallelGripper(
+            end_effector_prim_path=f"{prim_path}/panda_rightfinger",
+            joint_prim_names=["panda_finger_joint1", "panda_finger_joint2"],
+            joint_opened_positions=np.array([0.05, 0.05]),
+            joint_closed_positions=np.array([0.02, 0.02]),
+            action_deltas=np.array([0.01, 0.01]),
+        )
+
+        return SingleManipulator(
+                    prim_path=prim_path, 
+                    name=self.name,
+                    end_effector_prim_name="panda_rightfinger", 
+                    gripper=gripper)
+
+    def setup_post_load(self, world):
+        from isaacsim.robot.manipulators.examples.franka.controllers import PickPlaceController
+
+        self._franka = world.scene.get_object(self.name)
+
+        self._controller = PickPlaceController(
+            name="pick_place_controller",
+            gripper=self._franka.gripper,
+            robot_articulation=self._franka,
+        )
+        self._franka.gripper.set_joint_positions(self._franka.gripper.joint_opened_positions)
+
+# Work in Progress
+class RidgebackFranka(IsaacSimRobot, _WheeledRobot):
+
+    def move(self, sim, throttle=0, steering=0):
+        from omni.isaac.core.utils.types import ArticulationAction
+        wheeled_robot = sim.world.scene.get_object(self.name)
+        action = ArticulationAction(
+            joint_velocities=[throttle, steering],  
+            joint_indices=[9, 6]
+        )
+        wheeled_robot.apply_action(action)
+
+    def create(self):
+        from isaacsim.robot.wheeled_robots.controllers.differential_controller import DifferentialController
+        from isaacsim.robot.wheeled_robots.robots import WheeledRobot
+        from isaacsim.core.api.materials import PreviewSurface
+        from isaacsim.storage.native import get_assets_root_path
+
+        assets_root_path = get_assets_root_path()
+        ridgeback_franka_path = assets_root_path + "/Isaac/Robots/Clearpath/RidgebackFranka/ridgeback_franka.usd"
+        prim_path = f"/World/{self.name}"
+
+        prim = SingleArticulation(
+            prim_path=prim_path, 
+            name=self.name,
+            #create_robot=True,
+            orientation=scenicToIsaacSimOrientation(self.orientation, initial_rotation=[0, 0, 0]),
+            position=self.position,
+            usd_path=ridgeback_franka_path,
+            #wheel_dof_names=["dummy_base_prismatic_x_joint", "dummy_base_revolute_z_joint"]
+        )
+        
+        if self.color:
+            material = PreviewSurface(
+            prim_path=f"/World/material/{self.name}",  
+            color=np.array(self.color) if self.color else None)
+
+            prim.apply_visual_material(material)
+
+        return prim
 
 class Create3(IsaacSimRobot, _WheeledRobot):
 
@@ -281,7 +377,7 @@ if globalParameters.environmentUSDPath:
 
         for node_name in scene.graph.nodes_geometry:
             mesh = scene.geometry[node_name]
-            color = [0, 0, 1]
+            #color = [0, 0, 1]
 
             world_transform = scene.graph.get(node_name, "World")[0]
             scale, shear, angles, tr, persp = decompose_matrix(world_transform)
@@ -293,13 +389,13 @@ if globalParameters.environmentUSDPath:
             path = meshData[node_name]['full_path']
 
             if isPlanar(mesh): 
-                color = [0, 1, 0]
+                #color = [0, 1, 0]
                 mesh = planeToMesh(mesh)
 
             newObj = new IsaacSimPreexisting at world_center, 
                         with shape MeshShape(repairMesh(mesh.apply_scale(.01))), # scale by 1/100
                         with name path,
-                        with color color,
+                        #with color color,
                         facing (yaw, pitch, roll)
 
             _addPreexistingObj(newObj)
