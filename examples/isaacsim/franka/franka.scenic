@@ -19,8 +19,8 @@ class Toy(IsaacSimObject):
 
 floor = getPreexistingObj("/Root/Towel_Room01_floor_bottom_218/Towel_Room01_floor_bottom")
 
-for _ in range(globalParameters.numToys):
-   new Toy on floor
+# for _ in range(globalParameters.numToys):
+#    new Toy on floor
 
 table = getPreexistingObj('/Root/table_low_327/table_low')
 
@@ -30,6 +30,7 @@ small_bin = new IsaacSimObject with usd_path "C:/isaacsim_assets/Assets/Isaac/4.
     with shape MeshShape(small_bin_mesh),
     on table, 
     at (Range(-.5, .5), Range(-.5, .5)),
+    with color (.78, .08, 0.52)
     #with physics False
 
 cube = new IsaacSimObject on table, 
@@ -43,4 +44,5 @@ cube = new IsaacSimObject on table,
     #with physics False
 
 new Franka on table, at (0, 0), 
-    with behavior PickAndPlace(cube, (small_bin.x, small_bin.y, small_bin.z + .2))
+    with behavior PickAndPlace(cube, (small_bin.x, small_bin.y, small_bin.z + .2)),
+    with color (1, 1, 1)

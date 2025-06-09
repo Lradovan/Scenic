@@ -35,7 +35,7 @@ class QuadrupedRobotAction(Action):
     def canBeTakenBy(self, agent):
         return isinstance(agent, _QuadrupedRobot)
     
-class setMoveRobot(RobotAction):
+class applyController(RobotAction):
 
     def __init__(self, command):
         self.command = command

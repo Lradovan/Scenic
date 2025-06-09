@@ -377,7 +377,6 @@ if globalParameters.environmentUSDPath:
 
         for node_name in scene.graph.nodes_geometry:
             mesh = scene.geometry[node_name]
-            #color = [0, 0, 1]
 
             world_transform = scene.graph.get(node_name, "World")[0]
             scale, shear, angles, tr, persp = decompose_matrix(world_transform)
@@ -389,13 +388,11 @@ if globalParameters.environmentUSDPath:
             path = meshData[node_name]['full_path']
 
             if isPlanar(mesh): 
-                #color = [0, 1, 0]
                 mesh = planeToMesh(mesh)
 
             newObj = new IsaacSimPreexisting at world_center, 
                         with shape MeshShape(repairMesh(mesh.apply_scale(.01))), # scale by 1/100
                         with name path,
-                        #with color color,
                         facing (yaw, pitch, roll)
 
             _addPreexistingObj(newObj)
